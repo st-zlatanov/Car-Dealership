@@ -12,12 +12,12 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class VehicleAddBindingModel {
-    private CategoryName type;
     private String make;
     private String model;
     private BigDecimal price;
     private LocalDate yearOfManufacturing;
     private String description;
+    private CategoryName category;
 
 
     public VehicleAddBindingModel() {
@@ -71,11 +71,12 @@ public class VehicleAddBindingModel {
     }
 
     @NotNull(message = "Enter valid category name!")
-    public CategoryName getType() {
-        return type;
+
+    public CategoryName getCategory() {
+        return category;
     }
 
-    public void setType(CategoryName type) {
-        this.type = type;
+    public void setCategory(CategoryName category) {
+        this.category = category;
     }
 }
