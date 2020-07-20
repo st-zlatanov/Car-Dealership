@@ -1,6 +1,7 @@
 package com.softuni.service.impl;
 
 import com.softuni.model.entity.Role;
+import com.softuni.model.service.RoleServiceModel;
 import com.softuni.repository.RoleRepository;
 import com.softuni.service.RoleService;
 import org.modelmapper.ModelMapper;
@@ -29,5 +30,15 @@ public class RoleServiceImpl implements RoleService {
             this.roleRepository.save(admin);
             this.roleRepository.save(user);
         }
+    }
+
+    @Override
+    public RoleServiceModel findByName(String name) {
+        return this.roleRepository
+                .findByName(name)
+                .map(role ->
+                        this.modelMapper.map(role, RoleServiceModel.class))
+                .orElse(null);
+
     }
 }

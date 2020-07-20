@@ -5,6 +5,7 @@ public class UserServiceModel extends BaseServiceModel {
     private String username;
     private String password;
     private String email;
+    private RoleServiceModel role;
 
     public UserServiceModel() {
     }
@@ -33,5 +34,11 @@ public class UserServiceModel extends BaseServiceModel {
         this.email = email;
     }
 
+    public RoleServiceModel getRole() {
+        return role;
+    }
 
+    public void setRole(RoleServiceModel role) {
+        this.role = role;
+    }
 }
