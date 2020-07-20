@@ -1,27 +1,27 @@
-package com.softuni.model.entity;
+package com.softuni.model.binding;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import com.softuni.model.entity.Category;
+import com.softuni.model.entity.CategoryName;
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
-@Entity
-@Table(name="parts")
-public class Part extends BaseEntity{
+public class PartAddBindingModel {
     private String name;
     private String carModel;
     private BigDecimal price;
     private String description;
     private String condition;
     private int quantity;
-    private Category category;
+    private CategoryName category;
 
-
-    public Part() {
+    public PartAddBindingModel() {
     }
 
-    @Column(name="name")
+    @Length(min = 1, max=25 , message = "Name length must be between 1 and 25 characters!")
     public String getName() {
         return name;
     }
@@ -30,7 +30,7 @@ public class Part extends BaseEntity{
         this.name = name;
     }
 
-    @Column(name="car_model")
+    @Length(min = 1, max=35 , message = "Car model length must be between 1 and 35 characters!")
     public String getCarModel() {
         return carModel;
     }
@@ -39,7 +39,7 @@ public class Part extends BaseEntity{
         this.carModel = carModel;
     }
 
-    @Column(name="price")
+    @DecimalMin(value = "0", message = "Price must be a positive number!")
     public BigDecimal getPrice() {
         return price;
     }
@@ -48,7 +48,7 @@ public class Part extends BaseEntity{
         this.price = price;
     }
 
-    @Column(name="description", columnDefinition = "TEXT")
+    @Length(min = 5, message = "Description min length must be minimum 5(inclusive) characters")
     public String getDescription() {
         return description;
     }
@@ -57,7 +57,7 @@ public class Part extends BaseEntity{
         this.description = description;
     }
 
-    @Column(name="condition_of_part")
+    @Length(min = 1, max=35 , message = "Condition length must be between 1 and 35 characters!")
     public String getCondition() {
         return condition;
     }
@@ -66,7 +66,7 @@ public class Part extends BaseEntity{
         this.condition = condition;
     }
 
-    @Column(name="quantity")
+    @Min(value = 0, message = "Enter valid quantity!")
     public int getQuantity() {
         return quantity;
     }
@@ -75,12 +75,12 @@ public class Part extends BaseEntity{
         this.quantity = quantity;
     }
 
-    @ManyToOne
-    public Category getCategory() {
+    @NotNull(message = "Enter valid category name!")
+    public CategoryName getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(CategoryName category) {
         this.category = category;
     }
 }

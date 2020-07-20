@@ -71,7 +71,6 @@ public class VehicleAddBindingModel {
     }
 
     @NotNull(message = "Enter valid category name!")
-
     public CategoryName getCategory() {
         return category;
     }

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{/fragments/head}"></th:block>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg bg-nav rounded">
+        <th:block th:include="~{/fragments/nav}"></th:block>
+    </nav>
+</header>
+<main>
+    <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Add vehicle</span></h1>
+    <hr class="hr-3 w-25 bg-white"/>
+    <form class="mx-auto w-25 bg-blur rounded" th:object="${partAddBindingModel}" method="POST" th:action="@{/parts/add}">
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="name" class="h4 mb-2 text-white">Name of part</label>
+            </div>
+            <input th:field="*{name}" th:errorclass="bg-danger" type="text" class="form-control" id="name" name="name"/>
+            <small th:each="e : ${#fields.errors('name')}" th:text="${e}" class="text-danger">Name error</small>
+        </div>
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="carModel" class="h4 mb-2 text-white">Car Model</label>
+            </div>
+            <input th:field="*{carModel}" th:errorclass="bg-danger" type="text" class="form-control" id="carModel" name="carModel"/>
+            <small th:each="e : ${#fields.errors('carModel')}" th:text="${e}" class="text-danger">Car Model error</small>
+        </div>
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="condition" class="h4 mb-2 text-white">Condition</label>
+            </div>
+            <input th:field="*{condition}" th:errorclass="bg-danger" type="text" class="form-control" id="condition" name="condition"/>
+            <small th:each="e : ${#fields.errors('condition')}" th:text="${e}" class="text-danger">Condition error</small>
+        </div>
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="description" class="h4 mb-2">Description</label>
+            </div>
+            <textarea th:field="*{description}"  th:errorclass="bg-danger" type="text" class="form-control" id="description" name="description"></textarea>
+            <small th:each="e : ${#fields.errors('description')}" th:text="${e}" class="text-danger">Description error message</small>
+        </div>
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="quantity" class="h4 mb-2">Quantity</label>
+            </div>
+            <input th:field="*{quantity}" th:errorclass="bg-danger" type="number" step="0.1" class="form-control" id="quantity" name="quantity"/>
+            <small th:each="e : ${#fields.errors('quantity')}" th:text="${e}" class="text-danger">Quantity error message</small>
+        </div>
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="price" class="h4 mb-2">Price for 1</label>
+            </div>
+            <input th:field="*{price}" th:errorclass="bg-danger" type="number" step="0.1" class="form-control" id="price" name="price"/>
+            <small th:each="e : ${#fields.errors('price')}" th:text="${e}" class="text-danger">Price error message</small>
+        </div>
+        <div class="form-group">
+            <div class="text-white label-holder d-flex justify-content-center">
+                <label for="category" class="h4 mb-2">Category</label>
+            </div>
+            <select th:errorclass="bg-danger" class="browser-default custom-select" id="category" name="category">
+                <option value="">Select category</option>
+                <option th:each="c : ${T(com.softuni.model.entity.CategoryName).values()}"
+                        th:text="${c}" th:value="${c}"></option>
+
+            </select>
+            <small th:each="e : ${#fields.errors('category')}" th:text="${e}" class="text-danger">Category error message</small>
+        </div>
+
+        <div class="button-holder d-flex justify-content-center">
+            <button type="submit" class="btn btn-warning  mb-3" value="Register">Add product</button>
+        </div>
+    </form>
+</main>
+
+<footer class="footer bg-transparent  py-2">
+    <th:block th:include="~{/fragments/footer}"></th:block>
+</footer>
+</body>
+</html>

@@ -1,27 +1,20 @@
-package com.softuni.model.entity;
+package com.softuni.model.service;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+
 import java.math.BigDecimal;
 
-@Entity
-@Table(name="parts")
-public class Part extends BaseEntity{
+public class PartServiceModel extends BaseServiceModel {
     private String name;
     private String carModel;
     private BigDecimal price;
     private String description;
     private String condition;
     private int quantity;
-    private Category category;
+    private CategoryServiceModel category;
 
-
-    public Part() {
+    public PartServiceModel() {
     }
 
-    @Column(name="name")
     public String getName() {
         return name;
     }
@@ -30,7 +23,6 @@ public class Part extends BaseEntity{
         this.name = name;
     }
 
-    @Column(name="car_model")
     public String getCarModel() {
         return carModel;
     }
@@ -39,7 +31,6 @@ public class Part extends BaseEntity{
         this.carModel = carModel;
     }
 
-    @Column(name="price")
     public BigDecimal getPrice() {
         return price;
     }
@@ -48,7 +39,6 @@ public class Part extends BaseEntity{
         this.price = price;
     }
 
-    @Column(name="description", columnDefinition = "TEXT")
     public String getDescription() {
         return description;
     }
@@ -57,7 +47,6 @@ public class Part extends BaseEntity{
         this.description = description;
     }
 
-    @Column(name="condition_of_part")
     public String getCondition() {
         return condition;
     }
@@ -66,7 +55,6 @@ public class Part extends BaseEntity{
         this.condition = condition;
     }
 
-    @Column(name="quantity")
     public int getQuantity() {
         return quantity;
     }
@@ -75,12 +63,11 @@ public class Part extends BaseEntity{
         this.quantity = quantity;
     }
 
-    @ManyToOne
-    public Category getCategory() {
+    public CategoryServiceModel getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(CategoryServiceModel category) {
         this.category = category;
     }
 }
