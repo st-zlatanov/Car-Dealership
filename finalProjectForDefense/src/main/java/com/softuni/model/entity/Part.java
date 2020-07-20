@@ -30,7 +30,7 @@ public class Part extends BaseEntity{
         this.name = name;
     }
 
-    @Column(name="car_model")
+    @Column(name="car_model", nullable = false)
     public String getCarModel() {
         return carModel;
     }
@@ -39,7 +39,7 @@ public class Part extends BaseEntity{
         this.carModel = carModel;
     }
 
-    @Column(name="price")
+    @Column(name="price", nullable = false)
     public BigDecimal getPrice() {
         return price;
     }
@@ -48,7 +48,7 @@ public class Part extends BaseEntity{
         this.price = price;
     }
 
-    @Column(name="description", columnDefinition = "TEXT")
+    @Column(name="description", columnDefinition = "TEXT", nullable = false)
     public String getDescription() {
         return description;
     }
@@ -57,7 +57,7 @@ public class Part extends BaseEntity{
         this.description = description;
     }
 
-    @Column(name="condition_of_part")
+    @Column(name="condition_of_part", nullable = false)
     public String getCondition() {
         return condition;
     }
@@ -66,7 +66,7 @@ public class Part extends BaseEntity{
         this.condition = condition;
     }
 
-    @Column(name="quantity")
+    @Column(name="quantity", nullable = false)
     public int getQuantity() {
         return quantity;
     }

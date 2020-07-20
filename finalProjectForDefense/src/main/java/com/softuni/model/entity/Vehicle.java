@@ -26,7 +26,7 @@ public class Vehicle extends BaseEntity {
         this.category = category;
     }
 
-    @Column(name="make")
+    @Column(name="make", nullable = false)
     public String getMake() {
         return make;
     }
@@ -35,7 +35,7 @@ public class Vehicle extends BaseEntity {
         this.make = make;
     }
 
-    @Column(name="model")
+    @Column(name="model", nullable = false)
     public String getModel() {
         return model;
     }
@@ -44,7 +44,7 @@ public class Vehicle extends BaseEntity {
         this.model = model;
     }
 
-    @Column(name="price")
+    @Column(name="price", nullable = false)
     public BigDecimal getPrice() {
         return price;
     }
@@ -53,7 +53,7 @@ public class Vehicle extends BaseEntity {
         this.price = price;
     }
 
-    @Column(name="yearOfManufacturing")
+    @Column(name="year_of_manufacturing", nullable = false)
     public LocalDate getYearOfManufacturing() {
         return yearOfManufacturing;
     }
@@ -62,7 +62,7 @@ public class Vehicle extends BaseEntity {
         this.yearOfManufacturing = yearOfManufacturing;
     }
 
-    @Column(name="description", columnDefinition = "TEXT")
+    @Column(name="description", columnDefinition = "TEXT", nullable = false)
     public String getDescription() {
         return description;
     }
