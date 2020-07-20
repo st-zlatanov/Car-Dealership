@@ -1,25 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
-    <th:block th:include="~{fragments/head}"></th:block>
-
+    <th:block th:include="~{/fragments/head}"></th:block>
 </head>
-
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg bg-nav rounded">
+        <th:block th:include="~{/fragments/nav}"></th:block>
+    </nav>
+</header>
 <body>
 <div class="container">
-    <div class="row rounded">
-        <div class="col-12">
-            <nav class="navbar navbar-expand-xl navbar-light bg-light rounded">
-                <th:block th:include="~{fragments/nav}"></th:block>
-            </nav>
-
-        </div>
-    </div>
-    <!-- row -->
     <div class="row tm-mt-big justify-content-center">
         <div class="col-xl-8 col-lg-10 col-md-12 col-sm-12">
-            <div class="bg-white tm-block">
+            <div class="bg-blur rounded mt-5">
                 <div class="row">
                     <div class="col-12">
                         <h2 class="tm-block-title d-inline-block">Add new role to user</h2>
@@ -38,9 +32,6 @@
                                     <th:block th:each="u : ${usernames}">
                                         <option th:text="${u}" th:value="${u}"></option>
                                     </th:block>
-
-
-
                                 </select>
                             </div>
                             <div class="input-group mb-3">
@@ -62,7 +53,7 @@
                         </form>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-12 mx-auto mb-4">
-                        <img src="/img/admin.gif" alt="Exercise picture" width="100%">
+                        <img src="/img/admin.gif" width="100%">
                     </div>
                 </div>
             </div>

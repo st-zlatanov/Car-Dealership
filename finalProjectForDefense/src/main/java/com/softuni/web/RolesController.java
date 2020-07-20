@@ -1,15 +1,19 @@
 package com.softuni.web;
 
 import com.softuni.model.binding.RoleAddBindingModel;
+import com.softuni.model.binding.VehicleAddBindingModel;
 import com.softuni.service.RoleService;
 import com.softuni.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/roles")
@@ -25,9 +29,13 @@ public class RolesController {
     }
 
     @GetMapping("/add")
-    public ModelAndView add(ModelAndView modelAndView){
-        modelAndView.addObject("usernames", this.userService.findAllUsernames());
-        modelAndView.setViewName("role-add");
+    public ModelAndView add(ModelAndView modelAndView, HttpSession httpSession, Model model){
+        if (httpSession.getAttribute("user") == null) {
+            modelAndView.setViewName("index");
+        } else {
+            modelAndView.addObject("usernames", this.userService.findAllUsernames());
+            modelAndView.setViewName("role-add");
+        }
         return modelAndView;
     }
 
