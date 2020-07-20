@@ -1,5 +1,5 @@
 package com.softuni.model.entity;
 
-public enum VehicleType {
+public enum CategoryName {
     CAR, MOTORBIKE, TRUCK;
 }

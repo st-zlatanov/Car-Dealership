@@ -1,32 +1,27 @@
-package com.softuni.model.entity;
+package com.softuni.model.service;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "vehicles")
-public class Vehicle extends BaseEntity {
-    private Category category;
+public class VehicleServiceModel extends BaseServiceModel {
+    private CategoryServiceModel category;
     private String make;
     private String model;
     private BigDecimal price;
     private LocalDate yearOfManufacturing;
     private String description;
 
-    public Vehicle() {
+    public VehicleServiceModel() {
     }
 
-    @ManyToOne
-    public Category getCategory() {
+    public CategoryServiceModel getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(CategoryServiceModel category) {
         this.category = category;
     }
 
-    @Column(name="make")
     public String getMake() {
         return make;
     }
@@ -35,7 +30,6 @@ public class Vehicle extends BaseEntity {
         this.make = make;
     }
 
-    @Column(name="model")
     public String getModel() {
         return model;
     }
@@ -44,7 +38,6 @@ public class Vehicle extends BaseEntity {
         this.model = model;
     }
 
-    @Column(name="price")
     public BigDecimal getPrice() {
         return price;
     }
@@ -53,7 +46,6 @@ public class Vehicle extends BaseEntity {
         this.price = price;
     }
 
-    @Column(name="yearOfManufacturing")
     public LocalDate getYearOfManufacturing() {
         return yearOfManufacturing;
     }
@@ -62,7 +54,6 @@ public class Vehicle extends BaseEntity {
         this.yearOfManufacturing = yearOfManufacturing;
     }
 
-    @Column(name="description", columnDefinition = "TEXT")
     public String getDescription() {
         return description;
     }
