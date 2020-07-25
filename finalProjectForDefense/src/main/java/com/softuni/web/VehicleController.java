@@ -4,6 +4,7 @@ import com.softuni.model.binding.VehicleAddBindingModel;
 import com.softuni.model.service.VehicleServiceModel;
 import com.softuni.service.VehicleService;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,6 +31,7 @@ public class VehicleController {
 
 
     @GetMapping("/add")
+    @PreAuthorize("hasAnyRole('ADMIN','USER')")
     public ModelAndView add(HttpSession httpSession, ModelAndView modelAndView, Model model){
         if (httpSession.getAttribute("user") == null) {
             modelAndView.setViewName("index");

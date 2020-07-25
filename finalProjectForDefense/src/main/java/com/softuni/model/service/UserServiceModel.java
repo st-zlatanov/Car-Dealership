@@ -1,11 +1,13 @@
 package com.softuni.model.service;
 
 
+import java.util.Set;
+
 public class UserServiceModel extends BaseServiceModel {
     private String username;
     private String password;
     private String email;
-    private RoleServiceModel role;
+    private Set<RoleServiceModel> authorities;
 
     public UserServiceModel() {
     }
@@ -34,11 +36,11 @@ public class UserServiceModel extends BaseServiceModel {
         this.email = email;
     }
 
-    public RoleServiceModel getRole() {
-        return role;
+    public Set<RoleServiceModel> getAuthorities() {
+        return authorities;
     }
 
-    public void setRole(RoleServiceModel role) {
-        this.role = role;
+    public void setAuthorities(Set<RoleServiceModel> authorities) {
+        this.authorities = authorities;
     }
 }

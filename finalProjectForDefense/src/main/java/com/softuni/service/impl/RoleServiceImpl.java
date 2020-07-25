@@ -20,25 +20,33 @@ public class RoleServiceImpl implements RoleService {
         this.modelMapper = modelMapper;
     }
 
-
-    @PostConstruct
-    public void init(){
-        if(this.roleRepository.count()==0){
-            Role admin = new Role("ADMIN");
-            Role user = new Role("USER");
-
-            this.roleRepository.save(admin);
-            this.roleRepository.save(user);
+    @Override
+    public void seedRolesInDb() {
+        if(roleRepository.count()==0){
+            this.roleRepository.saveAndFlush(new Role("ADMIN"));
+            this.roleRepository.saveAndFlush(new Role("USER"));
         }
     }
 
-    @Override
-    public RoleServiceModel findByName(String name) {
-        return this.roleRepository
-                .findByName(name)
-                .map(role ->
-                        this.modelMapper.map(role, RoleServiceModel.class))
-                .orElse(null);
 
-    }
+//    @PostConstruct
+//    public void init(){
+//        if(this.roleRepository.count()==0){
+//            Role admin = new Role("ADMIN");
+//            Role user = new Role("USER");
+//
+//            this.roleRepository.save(admin);
+//            this.roleRepository.save(user);
+//        }
+//    }
+
+//    @Override
+//    public RoleServiceModel findByName(String name) {
+//        return this.roleRepository
+//                .findByName(name)
+//                .map(role ->
+//                        this.modelMapper.map(role, RoleServiceModel.class))
+//                .orElse(null);
+//
+//    }
 }

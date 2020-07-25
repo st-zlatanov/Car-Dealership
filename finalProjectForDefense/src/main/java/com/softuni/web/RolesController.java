@@ -39,12 +39,12 @@ public class RolesController {
         return modelAndView;
     }
 
-    @PostMapping("/add")
-    public String addConfirm(@ModelAttribute("roleAddBindingModel")
-                                         RoleAddBindingModel roleAddBindingModel){
-        //todo validate
-        this.userService.addRoleToUser(roleAddBindingModel.getUsername(), roleAddBindingModel.getRole());
-
-        return "redirect:/";
-    }
+//    @PostMapping("/add")
+//    public String addConfirm(@ModelAttribute("roleAddBindingModel")
+//                                         RoleAddBindingModel roleAddBindingModel){
+//        //todo validate
+//        this.userService.addRoleToUser(roleAddBindingModel.getUsername(), roleAddBindingModel.getRole());
+//
+//        return "redirect:/";
+//    }
 }

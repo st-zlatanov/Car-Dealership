@@ -1,27 +1,31 @@
 package com.softuni.model.entity;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "roles")
-public class Role extends BaseEntity {
-    private String name;
+public class Role extends BaseEntity implements GrantedAuthority {
+    @Column(nullable = false,unique = true)
+    private String authority;
 
     public Role() {
     }
-    public Role(String name) {
-        this.name = name;
+
+    public Role(String authority) {
+        this.authority = authority;
     }
 
 
-    @Column(name = "name", unique = true)
-    public String getName() {
-        return name;
+    @Override
+    public String getAuthority() {
+        return authority;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAuthority(String name) {
+        this.authority = name;
     }
 }

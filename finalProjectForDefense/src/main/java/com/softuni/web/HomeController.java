@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.security.Principal;
 
 @Controller
 public class HomeController {
@@ -19,8 +20,8 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public ModelAndView index(HttpSession httpSession, ModelAndView modelAndView) {
-        if (httpSession.getAttribute("user") == null) {
+    public ModelAndView index(Principal principal, ModelAndView modelAndView) {
+        if (principal == null) {
             modelAndView.setViewName("index");
         } else {
             modelAndView.addObject("vehicles", this.vehicleService.findAllVehicles());
