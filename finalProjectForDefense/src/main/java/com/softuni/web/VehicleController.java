@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/vehicles")
@@ -31,9 +32,9 @@ public class VehicleController {
 
 
     @GetMapping("/add")
-    @PreAuthorize("hasAnyRole('ADMIN','USER')")
-    public ModelAndView add(HttpSession httpSession, ModelAndView modelAndView, Model model){
-        if (httpSession.getAttribute("user") == null) {
+    @PreAuthorize("isAuthenticated()")
+    public ModelAndView add(Principal principal, ModelAndView modelAndView, Model model){
+        if (principal == null) {
             modelAndView.setViewName("index");
         } else {
             if(!model.containsAttribute("vehicleAddBindingModel")){

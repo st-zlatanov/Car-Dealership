@@ -1,6 +1,8 @@
 package com.softuni.service.impl;
 
+import com.softuni.model.entity.Role;
 import com.softuni.repository.RoleRepository;
+import com.softuni.service.RoleService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,13 +21,14 @@ import java.util.stream.Collectors;
 @Service
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
-//    private final RoleService roleService;
+    private final RoleService roleService;
     private final RoleRepository roleRepository;
     private final ModelMapper modelMapper;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, ModelMapper modelMapper, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public UserServiceImpl(UserRepository userRepository, RoleService roleService, RoleRepository roleRepository, ModelMapper modelMapper, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;
+        this.roleService = roleService;
         this.roleRepository = roleRepository;
         this.modelMapper = modelMapper;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
@@ -70,15 +73,13 @@ public class UserServiceImpl implements UserService {
         return this.userRepository.findAll().stream().map(User::getUsername).collect(Collectors.toList());
     }
 
-//    @Override
-//    public void addRoleToUser(String username, String role) {
-//        User user = this.userRepository.findByUsername(username).orElse(null);
-//        if(!user.getRole().getAuthority().equals(role)){
-//            Role roleEntity = this.modelMapper.map(this.roleService.findByName(role), Role.class);
-//            user.setRole(roleEntity);
-//            this.userRepository.saveAndFlush(user);
-//        }
-//    }
+    @Override
+    public void addRoleToUser(String username, String auth) {
+        User user = this.userRepository.findByUsername(username).orElse(null);
+        Role role = this.roleRepository.findByAuthority(auth);
+
+        user.getAuthorities().add();
+    }
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {

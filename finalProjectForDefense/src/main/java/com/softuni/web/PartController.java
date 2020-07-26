@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/parts")
@@ -31,8 +32,8 @@ public class PartController {
     }
 
     @GetMapping("/add")
-    public ModelAndView add(HttpSession httpSession, ModelAndView modelAndView, Model model){
-        if (httpSession.getAttribute("user") == null) {
+    public ModelAndView add(Principal principal, ModelAndView modelAndView, Model model){
+        if (principal == null) {
             modelAndView.setViewName("index");
         } else {
             if(!model.containsAttribute("partAddBindingModel")){

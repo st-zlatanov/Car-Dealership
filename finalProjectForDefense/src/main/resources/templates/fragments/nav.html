@@ -1,4 +1,23 @@
-<th:block xmlns:th="http://www.thymeleaf.org">
+<th:block xmlns:th="http://www.thymeleaf.org"
+th:if="${session.username==null}">
+    <a class="nav-link text-white active h5" href="/">Car Dealership App</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+        <ul class="navbar-nav row">
+            <li class="nav-item col-md-4">
+                <a class="nav-link text-white active h5" href="/users/login">Login</a>
+            </li>
+            <li class="nav-item col-md-4">
+                <a class="nav-link text-white active h5" href="/users/register">Register</a>
+            </li>
+        </ul>
+    </div>
+</th:block>
+<th:block xmlns:th="http://www.thymeleaf.org"
+    th:unless="${session.username==null}">
     <a class="nav-link text-white active h5" href="/">Car Dealership App</a>
     <a class="nav-link text-white active h5" href="/vehicles/add">Add Vehicle</a>
     <a class="nav-link text-white active h5" href="/parts/add">Add Part</a>
@@ -10,7 +29,7 @@
     <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
         <ul class="navbar-nav row">
             <li class="nav-item col-md-4">
-                <a class="nav-link text-white active h5" href="/users/logout">Logout</a>
+                <a class="nav-link text-white active h5" href="/logout">Logout</a>
             </li>
         </ul>
     </div>
