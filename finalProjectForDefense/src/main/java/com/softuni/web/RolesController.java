@@ -5,6 +5,7 @@ import com.softuni.model.binding.VehicleAddBindingModel;
 import com.softuni.service.RoleService;
 import com.softuni.service.UserService;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/roles")
@@ -29,8 +31,9 @@ public class RolesController {
     }
 
     @GetMapping("/add")
-    public ModelAndView add(ModelAndView modelAndView, HttpSession httpSession, Model model){
-        if (httpSession.getAttribute("user") == null) {
+    @PreAuthorize(value = "hasAnyAuthority('ADMIN')")
+    public ModelAndView add(ModelAndView modelAndView, Principal principal, Model model){
+        if (principal == null) {
             modelAndView.setViewName("index");
         } else {
             modelAndView.addObject("usernames", this.userService.findAllUsernames());
@@ -39,12 +42,15 @@ public class RolesController {
         return modelAndView;
     }
 
-//    @PostMapping("/add")
-//    public String addConfirm(@ModelAttribute("roleAddBindingModel")
-//                                         RoleAddBindingModel roleAddBindingModel){
-//        //todo validate
-//        this.userService.addRoleToUser(roleAddBindingModel.getUsername(), roleAddBindingModel.getRole());
-//
-//        return "redirect:/";
-//    }
+    @PostMapping("/add")
+    public String addConfirm(@ModelAttribute("roleAddBindingModel")
+                                         RoleAddBindingModel roleAddBindingModel, Principal principal){
+        if(principal.getName().equals(roleAddBindingModel.getUsername())){
+            return "redirect:/error";
+            //da vryshta error
+        }
+        this.userService.addRoleToUser(roleAddBindingModel.getUsername(), roleAddBindingModel.getRole());
+
+        return "redirect:/";
+    }
 }

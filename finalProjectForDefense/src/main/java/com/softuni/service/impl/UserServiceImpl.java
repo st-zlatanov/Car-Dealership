@@ -1,6 +1,7 @@
 package com.softuni.service.impl;
 
 import com.softuni.model.entity.Role;
+import com.softuni.model.service.RoleServiceModel;
 import com.softuni.repository.RoleRepository;
 import com.softuni.service.RoleService;
 import org.modelmapper.ModelMapper;
@@ -76,10 +77,26 @@ public class UserServiceImpl implements UserService {
     @Override
     public void addRoleToUser(String username, String auth) {
         User user = this.userRepository.findByUsername(username).orElse(null);
-        Role role = this.roleRepository.findByAuthority(auth);
+        UserServiceModel userServiceModel = this.modelMapper.map(user, UserServiceModel.class);
 
-        user.getAuthorities().add();
+        boolean hasAuthority = false;
+
+        for (RoleServiceModel authority : userServiceModel.getAuthorities()) {
+            if (authority.getAuthority().equals("ADMIN")) {
+                hasAuthority = true;
+            }
+        }
+
+        if (hasAuthority) {
+            userServiceModel.getAuthorities().clear();
+            userServiceModel.getAuthorities().add(this.roleService.findByAuthority("USER"));
+        } else {
+            userServiceModel.getAuthorities().add(this.roleService.findByAuthority("ADMIN"));
+        }
+
+        this.userRepository.saveAndFlush(this.modelMapper.map(userServiceModel, User.class));
     }
+
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {

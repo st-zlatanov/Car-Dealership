@@ -21,6 +21,11 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    public RoleServiceModel findByAuthority(String auth) {
+        return this.modelMapper.map(this.roleRepository.findByAuthority(auth),RoleServiceModel.class);
+    }
+
+    @Override
     public void seedRolesInDb() {
         if(roleRepository.count()==0){
             this.roleRepository.saveAndFlush(new Role("ADMIN"));
@@ -40,13 +45,5 @@ public class RoleServiceImpl implements RoleService {
 //        }
 //    }
 
-//    @Override
-//    public RoleServiceModel findByName(String name) {
-//        return this.roleRepository
-//                .findByName(name)
-//                .map(role ->
-//                        this.modelMapper.map(role, RoleServiceModel.class))
-//                .orElse(null);
-//
-//    }
+
 }

@@ -1,8 +1,9 @@
 package com.softuni.service;
 
+import com.softuni.model.entity.Role;
 import com.softuni.model.service.RoleServiceModel;
 
 public interface RoleService {
-  //  RoleServiceModel findByName(String name);
+    RoleServiceModel findByAuthority(String auth);
     void seedRolesInDb();
 }
