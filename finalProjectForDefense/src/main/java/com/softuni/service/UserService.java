@@ -1,6 +1,7 @@
 package com.softuni.service;
 
 
+import com.softuni.model.service.RoleServiceModel;
 import com.softuni.model.service.UserServiceModel;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -14,4 +15,6 @@ public interface UserService extends UserDetailsService {
     List<String> findAllUsernames();
 
     void addRoleToUser(String username, String role);
+
+    List<RoleServiceModel> findAuthorities(String username);
 }

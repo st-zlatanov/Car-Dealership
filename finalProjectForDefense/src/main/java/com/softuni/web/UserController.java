@@ -1,5 +1,6 @@
 package com.softuni.web;
 
+import com.softuni.model.view.ProfileViewModel;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.softuni.model.binding.UserLoginBindingModel;
 import com.softuni.model.binding.UserRegisterBindingModel;
@@ -16,6 +18,7 @@ import com.softuni.service.UserService;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/users")
@@ -81,10 +84,19 @@ public class UserController {
         return "redirect:login";
     }
 
-//    @GetMapping("/logout")
-//    public String logout(HttpSession httpSession){
-//        httpSession.invalidate();
-//        return "redirect:/";
-//    }
+    @GetMapping("/profile")
+    public ModelAndView profile(ModelAndView modelAndView, Principal principal){
+        UserServiceModel userServiceModel = this.userService.findByUsername(principal.getName());
+        ProfileViewModel profileViewModel = this.modelMapper.map(userServiceModel, ProfileViewModel.class);
+        modelAndView.addObject("model", profileViewModel);
+     //   modelAndView.addObject("auth", this.userService.findAuthorities(principal.getName()));
+        modelAndView.addObject("auth", profileViewModel.getAuthorities());
+        modelAndView.addObject("admin", false);
+        if(profileViewModel.getAuthorities().size()>1){
+            modelAndView.addObject("admin", true);
+        }
+        modelAndView.setViewName("profile");
+        return modelAndView;
+    }
 
 }

@@ -1,6 +1,5 @@
 package com.softuni.service.impl;
 
-import com.softuni.model.entity.Role;
 import com.softuni.model.service.RoleServiceModel;
 import com.softuni.repository.RoleRepository;
 import com.softuni.service.RoleService;
@@ -52,14 +51,14 @@ public class UserServiceImpl implements UserService {
     public UserServiceModel register(UserServiceModel userServiceModel) {
         User user = this.modelMapper.map(userServiceModel, User.class);
 
-        if(this.userRepository.count() == 0){
+        if (this.userRepository.count() == 0) {
             user.setAuthorities(new HashSet<>(this.roleRepository.findAll()));
-        }else{
+        } else {
             user.setAuthorities(new HashSet<>(Set.of(this.roleRepository.findByAuthority("USER"))));
         }
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return this.modelMapper.map(this.userRepository.saveAndFlush(user),
-                        UserServiceModel.class);
+                UserServiceModel.class);
     }
 
     @Override
@@ -95,6 +94,13 @@ public class UserServiceImpl implements UserService {
         }
 
         this.userRepository.saveAndFlush(this.modelMapper.map(userServiceModel, User.class));
+    }
+
+    @Override
+    public List<RoleServiceModel> findAuthorities(String username) {
+        User user = this.userRepository.findByUsername(username).orElse(null);
+        UserServiceModel userServiceModel = this.modelMapper.map(user, UserServiceModel.class);
+        return userServiceModel.getAuthorities().stream().collect(Collectors.toList());
     }
 
 

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{/fragments/head}"></th:block>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg bg-nav rounded">
+        <th:block th:include="~{/fragments/nav}"></th:block>
+    </nav>
+</header>
+<main>
+    <div th:object="${model}" class="container bg-blur rounded mt-5 ">
+        <th:block th:if="${admin}">
+            <div class="col-xl-4 col-lg-4 col-md-12 mx-auto mb-4">
+                <img src="/img/admin.gif" width="100%">
+            </div>
+            <h3 th:text="|Username: ${session.username}|"></h3>
+            <h3>Authority: Admin</h3>
+        </th:block>
+        <th:block th:unless="${admin}">
+            <div class="col-xl-4 col-lg-4 col-md-12 mx-auto mb-4">
+                <img src="/img/user.png" width="100%">
+            </div>
+            <h3 th:text="|Username: ${session.username}|"></h3>
+            <h3>Authority: User</h3>
+        </th:block>
+        <h3 th:text="|Email: *{email}|"></h3>
+    </div>
+</main>
+<footer class="footer bg-transparent  py-2">
+    <th:block th:include="~{/fragments/footer}"></th:block>
+</footer>
+</body>
+</html>
