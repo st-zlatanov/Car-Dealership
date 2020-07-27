@@ -31,7 +31,7 @@ public class RolesController {
     }
 
     @GetMapping("/add")
-    @PreAuthorize(value = "hasAnyAuthority('ADMIN')")
+    @PreAuthorize(value = "hasAuthority('ADMIN')")
     public ModelAndView add(ModelAndView modelAndView, Principal principal, Model model){
         if (principal == null) {
             modelAndView.setViewName("index");
