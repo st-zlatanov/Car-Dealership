@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{/fragments/head}"></th:block>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg bg-nav rounded">
+        <th:block th:include="~{/fragments/nav}"></th:block>
+    </nav>
+</header>
+<main>
+    <div class="container-fluid">
+        <div class="offers row mx-auto d-flex flex-row justify-content-center">
+            <div th:each="u : ${users}" th:object="${u}" class="offer card col-sm-6 col-md-3  col-lg-2 m-1 p-0">
+
+                <div th:if="*{getAuthorities().size()>1}" class="card-img-top-wrapper">
+                <img class="card-img-top" src="../img/admin.gif" alt="image" width="200px" height="200px">
+                </div>
+
+                <div th:unless="*{getAuthorities().size()>1}" class="card-img-top-wrapper">
+                <img class="card-img-top" src="../img/user.png" alt="image" width="200px" height="200px">
+                </div>
+                <div class="card-body pb-1">
+                    <h5 class="card-title text-center" th:text="*{username}"></h5>
+                    <h5 th:if="*{getAuthorities().size()>1}" class="card-title text-center">ADMIN</h5>
+                    <h5 th:unless="*{getAuthorities().size()>1}" class="card-title text-center">USER</h5>
+                </div>
+<!--                <div th:if="*{getAuthorities().size()>1}">-->
+<!--                    <h5 class="card-title text-center">ADMIN</h5>-->
+<!--                </div>-->
+<!--                <div th:unless="*{getAuthorities().size()>1}">-->
+<!--                    <h5 class="card-title text-center">USER</h5>-->
+<!--                </div>-->
+            </div>
+        </div>
+    </div>
+</main>
+<footer class="footer bg-transparent  py-2">
+    <th:block th:include="~{/fragments/footer}"></th:block>
+</footer>
+</body>
+</html>

@@ -2,6 +2,7 @@ package com.softuni.web;
 
 import com.softuni.model.view.ProfileViewModel;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -96,6 +97,14 @@ public class UserController {
             modelAndView.addObject("admin", true);
         }
         modelAndView.setViewName("profile");
+        return modelAndView;
+    }
+
+    @GetMapping("/view")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ModelAndView view(ModelAndView modelAndView) {
+        modelAndView.addObject("users", this.userService.findAllUsers());
+        modelAndView.setViewName("view-users");
         return modelAndView;
     }
 

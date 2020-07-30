@@ -13,6 +13,7 @@ import com.softuni.model.service.UserServiceModel;
 import com.softuni.repository.UserRepository;
 import com.softuni.service.UserService;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -101,6 +102,11 @@ public class UserServiceImpl implements UserService {
         User user = this.userRepository.findByUsername(username).orElse(null);
         UserServiceModel userServiceModel = this.modelMapper.map(user, UserServiceModel.class);
         return userServiceModel.getAuthorities().stream().collect(Collectors.toList());
+    }
+
+    @Override
+    public List<User> findAllUsers() {
+        return new ArrayList<>(this.userRepository.findAll());
     }
 
 
