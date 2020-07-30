@@ -49,6 +49,13 @@
             <small th:each="e : ${#fields.errors('price')}" th:text="${e}" class="text-danger">Price error message</small>
         </div>
         <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="imgUrl" class="h4 mb-2 text-white">Image URL</label>
+            </div>
+            <input th:field="*{imgUrl}" th:errorclass="bg-danger" type="text" class="form-control" id="imgUrl" name="imgUrl"/>
+            <small th:each="e : ${#fields.errors('imgUrl')}" th:text="${e}" class="text-danger">Image Url error</small>
+        </div>
+        <div class="form-group">
             <div class="text-white label-holder d-flex justify-content-center">
                 <label for="category" class="h4 mb-2">Category</label>
             </div>

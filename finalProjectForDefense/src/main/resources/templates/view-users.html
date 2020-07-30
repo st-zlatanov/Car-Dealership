@@ -26,12 +26,7 @@
                     <h5 th:if="*{getAuthorities().size()>1}" class="card-title text-center">ADMIN</h5>
                     <h5 th:unless="*{getAuthorities().size()>1}" class="card-title text-center">USER</h5>
                 </div>
-<!--                <div th:if="*{getAuthorities().size()>1}">-->
-<!--                    <h5 class="card-title text-center">ADMIN</h5>-->
-<!--                </div>-->
-<!--                <div th:unless="*{getAuthorities().size()>1}">-->
-<!--                    <h5 class="card-title text-center">USER</h5>-->
-<!--                </div>-->
+
             </div>
         </div>
     </div>

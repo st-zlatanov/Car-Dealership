@@ -13,6 +13,7 @@ public class Vehicle extends BaseEntity {
     private BigDecimal price;
     private LocalDate yearOfManufacturing;
     private String description;
+    private String imgUrl;
 
     public Vehicle() {
     }
@@ -69,5 +70,14 @@ public class Vehicle extends BaseEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Column(name="img_url", nullable = false)
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 }

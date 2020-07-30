@@ -10,6 +10,7 @@ public class VehicleServiceModel extends BaseServiceModel {
     private BigDecimal price;
     private LocalDate yearOfManufacturing;
     private String description;
+    private String imgUrl;
 
     public VehicleServiceModel() {
     }
@@ -60,5 +61,13 @@ public class VehicleServiceModel extends BaseServiceModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 }

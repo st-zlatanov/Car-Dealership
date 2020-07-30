@@ -8,10 +8,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -33,15 +30,12 @@ public class VehicleController {
 
     @GetMapping("/add")
     @PreAuthorize("isAuthenticated()")
-    public ModelAndView add(Principal principal, ModelAndView modelAndView, Model model){
-        if (principal == null) {
-            modelAndView.setViewName("index");
-        } else {
-            if(!model.containsAttribute("vehicleAddBindingModel")){
-                model.addAttribute("vehicleAddBindingModel", new VehicleAddBindingModel());
-            }
-            modelAndView.setViewName("vehicle-add");
+    public ModelAndView add(ModelAndView modelAndView, Model model) {
+        if (!model.containsAttribute("vehicleAddBindingModel")) {
+            model.addAttribute("vehicleAddBindingModel", new VehicleAddBindingModel());
         }
+        modelAndView.setViewName("vehicle-add");
+
 
         return modelAndView;
     }
@@ -58,5 +52,16 @@ public class VehicleController {
         this.vehicleService.addVehicle(this.modelMapper
                 .map(vehicleAddBindingModel, VehicleServiceModel.class));
         return "redirect:/";
+    }
+
+    @GetMapping("/details")
+    @PreAuthorize("isAuthenticated()")
+    public ModelAndView details(ModelAndView modelAndView, @RequestParam("id")String id) {
+            modelAndView.addObject("vehicle", this.vehicleService.findVehicleById(id));
+
+            modelAndView.setViewName("vehicle-details");
+
+
+        return modelAndView;
     }
 }

@@ -41,4 +41,10 @@ public class VehicleServiceImpl implements VehicleService {
                 })
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public VehicleViewModel findVehicleById(String id) {
+
+        return this.modelMapper.map(vehicleRepository.findVehicleById(id), VehicleViewModel.class);
+    }
 }

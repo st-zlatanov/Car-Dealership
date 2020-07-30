@@ -17,7 +17,8 @@
             <div th:each="v : ${vehicles}" th:object="${v}" class="offer card col-sm-6 col-md-3  col-lg-2 m-1 p-0">
 
                     <div class="card-img-top-wrapper">
-                        <img class="card-img-top" src="https://audimediacenter-a.akamaihd.net/system/production/media/90567/images/72391bd2d21a80a761f0df1bd5bff197d5804daa/A201895_full.jpg?1583155437" alt="image">
+                        <a th:href="@{vehicles/details/(id = *{id})}">
+                        <img class="card-img-top" th:src="*{imgUrl}" alt="image"></a>
                     </div>
                     <div class="card-body pb-1">
                         <h5 class="card-title text-center" th:text="|*{make} *{model}|"></h5>

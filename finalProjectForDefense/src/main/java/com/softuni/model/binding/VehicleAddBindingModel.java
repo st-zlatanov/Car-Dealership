@@ -18,6 +18,7 @@ public class VehicleAddBindingModel {
     private LocalDate yearOfManufacturing;
     private String description;
     private CategoryName category;
+    private String imgUrl;
 
 
     public VehicleAddBindingModel() {
@@ -77,5 +78,14 @@ public class VehicleAddBindingModel {
 
     public void setCategory(CategoryName category) {
         this.category = category;
+    }
+
+    @NotNull(message = "Enter valid image url!")
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 }

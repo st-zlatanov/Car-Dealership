@@ -12,6 +12,8 @@ public class VehicleViewModel {
     private LocalDate yearOfManufacturing;
     private BigDecimal price;
     private CategoryName categoryName;
+    private String imgUrl;
+    private String description;
 
     public VehicleViewModel() {
     }
@@ -62,5 +64,21 @@ public class VehicleViewModel {
 
     public void setCategoryName(CategoryName categoryName) {
         this.categoryName = categoryName;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
