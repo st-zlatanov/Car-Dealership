@@ -4,6 +4,7 @@ import com.softuni.model.entity.CategoryName;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Set;
 
 public class VehicleViewModel {
     private String id;
@@ -81,4 +82,6 @@ public class VehicleViewModel {
     public void setDescription(String description) {
         this.description = description;
     }
+
+
 }

@@ -1,23 +1,21 @@
-package com.softuni.model.entity;
+package com.softuni.model.binding;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.DecimalMin;
 import java.math.BigDecimal;
 
-@Entity
-@Table(name="offers")
-public class Offer extends BaseEntity{
+public class OfferAddBindingModel {
     private String sender;
     private String receiver;
     private String text;
     private BigDecimal price;
 
 
-    public Offer() {
+    public OfferAddBindingModel() {
     }
 
-    @Column(name="sender", nullable = false)
+    @Length(min = 1, max=25 , message = "Sender length must be between 1 and 25 characters!")
     public String getSender() {
         return sender;
     }
@@ -26,7 +24,7 @@ public class Offer extends BaseEntity{
         this.sender = sender;
     }
 
-    @Column(name="receiver", nullable = false)
+    @Length(min = 1, max=25 , message = "Receiver length must be between 1 and 25 characters!")
     public String getReceiver() {
         return receiver;
     }
@@ -34,7 +32,8 @@ public class Offer extends BaseEntity{
     public void setReceiver(String receiver) {
         this.receiver = receiver;
     }
-    @Column(name="text", nullable = false)
+
+    @Length(min = 5, message = "Text length must be at least 5!")
     public String getText() {
         return text;
     }
@@ -43,7 +42,7 @@ public class Offer extends BaseEntity{
         this.text = text;
     }
 
-    @Column(name="price", nullable = false)
+    @DecimalMin(value = "0", message = "Price must be positive number!")
     public BigDecimal getPrice() {
         return price;
     }

@@ -1,23 +1,16 @@
-package com.softuni.model.entity;
+package com.softuni.model.service;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import java.math.BigDecimal;
 
-@Entity
-@Table(name="offers")
-public class Offer extends BaseEntity{
+public class OfferServiceModel {
     private String sender;
     private String receiver;
     private String text;
     private BigDecimal price;
 
-
-    public Offer() {
+    public OfferServiceModel() {
     }
 
-    @Column(name="sender", nullable = false)
     public String getSender() {
         return sender;
     }
@@ -26,7 +19,6 @@ public class Offer extends BaseEntity{
         this.sender = sender;
     }
 
-    @Column(name="receiver", nullable = false)
     public String getReceiver() {
         return receiver;
     }
@@ -34,7 +26,7 @@ public class Offer extends BaseEntity{
     public void setReceiver(String receiver) {
         this.receiver = receiver;
     }
-    @Column(name="text", nullable = false)
+
     public String getText() {
         return text;
     }
@@ -43,7 +35,6 @@ public class Offer extends BaseEntity{
         this.text = text;
     }
 
-    @Column(name="price", nullable = false)
     public BigDecimal getPrice() {
         return price;
     }

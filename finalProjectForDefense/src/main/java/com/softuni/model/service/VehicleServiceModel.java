@@ -2,6 +2,7 @@ package com.softuni.model.service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Set;
 
 public class VehicleServiceModel extends BaseServiceModel {
     private CategoryServiceModel category;
@@ -70,4 +71,6 @@ public class VehicleServiceModel extends BaseServiceModel {
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
     }
+
+
 }
