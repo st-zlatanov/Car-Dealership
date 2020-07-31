@@ -9,4 +9,5 @@ public interface VehicleService {
     void addVehicle(VehicleServiceModel vehicleServiceModel);
     List<VehicleViewModel> findAllVehicles();
     VehicleViewModel findVehicleById(String id);
+
 }

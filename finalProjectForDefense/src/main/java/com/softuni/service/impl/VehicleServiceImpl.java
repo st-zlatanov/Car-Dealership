@@ -9,6 +9,7 @@ import com.softuni.service.VehicleService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,6 +29,8 @@ public class VehicleServiceImpl implements VehicleService {
     public void addVehicle(VehicleServiceModel vehicleServiceModel) {
         Vehicle vehicle = this.modelMapper.map(vehicleServiceModel, Vehicle.class);
         vehicle.setCategory(this.categoryService.find(vehicleServiceModel.getCategory().getName()));
+        vehicle.setComments(new HashSet<>());
+        vehicle.setLikes(0);
         this.vehicleRepository.saveAndFlush(vehicle);
     }
 
@@ -47,4 +50,6 @@ public class VehicleServiceImpl implements VehicleService {
 
         return this.modelMapper.map(vehicleRepository.findVehicleById(id), VehicleViewModel.class);
     }
+
+
 }

@@ -2,6 +2,7 @@ package com.softuni.web;
 
 import com.softuni.model.binding.VehicleAddBindingModel;
 import com.softuni.model.service.VehicleServiceModel;
+import com.softuni.service.PartService;
 import com.softuni.service.VehicleService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,19 +13,19 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.security.Principal;
 
 @Controller
 @RequestMapping("/vehicles")
 public class VehicleController {
     private final VehicleService vehicleService;
     private final ModelMapper modelMapper;
+    private final PartService partService;
 
-    public VehicleController(VehicleService vehicleService, ModelMapper modelMapper) {
+    public VehicleController(VehicleService vehicleService, ModelMapper modelMapper, PartService partService) {
         this.vehicleService = vehicleService;
         this.modelMapper = modelMapper;
+        this.partService = partService;
     }
 
 
@@ -56,10 +57,21 @@ public class VehicleController {
 
     @GetMapping("/details")
     @PreAuthorize("isAuthenticated()")
-    public ModelAndView details(ModelAndView modelAndView, @RequestParam("id")String id) {
-            modelAndView.addObject("vehicle", this.vehicleService.findVehicleById(id));
+    public ModelAndView details(ModelAndView modelAndView, @RequestParam("id") String id) {
+        modelAndView.addObject("vehicle", this.vehicleService.findVehicleById(id));
 
-            modelAndView.setViewName("vehicle-details");
+        modelAndView.setViewName("vehicle-details");
+
+
+        return modelAndView;
+    }
+
+    @GetMapping("/viewAll")
+    @PreAuthorize("isAuthenticated()")
+    public ModelAndView viewAll(ModelAndView modelAndView) {
+        modelAndView.addObject("vehicles", this.vehicleService.findAllVehicles());
+
+        modelAndView.setViewName("vehicle-viewAll");
 
 
         return modelAndView;

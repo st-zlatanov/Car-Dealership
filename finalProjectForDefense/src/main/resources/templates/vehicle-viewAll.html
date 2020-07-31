@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:h1th="http://www.w3.org/1999/html">
+<head>
+    <th:block th:include="~{/fragments/head}"></th:block>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg bg-nav rounded">
+        <th:block th:include="~{/fragments/nav}"></th:block>
+    </nav>
+</header>
+<main>
+    <h3><a href="/vehicles/showCars" class="badge badge-pill badge-dark">Show Only Cars</a></h3>
+    <h3><a href="/vehicles/showBikes" class="badge badge-pill badge-dark">Show Only Motorbikes</a></h3>
+    <h3><a href="/vehicles/showTrucks" class="badge badge-pill badge-dark">Show Only Trucks</a></h3>
+    <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Vehicles</span></h1>
+    <hr class="hr-3"/>
+    <div class="container-fluid">
+        <div class="offers row mx-auto d-flex flex-row justify-content-center">
+            <div th:each="v : ${vehicles}" th:object="${v}" class="offer card col-sm-6 col-md-3  col-lg-2 m-1 p-0">
+
+                <div th:if="${v.categoryName.name()} == 'CAR'">
+                <h1><span class="badge badge-pill badge-dark">car</span></h1>
+                <div class="card-img-top-wrapper">
+                    <a th:href="@{vehicles/details/(id = *{id})}">
+                        <img class="card-img-top" th:src="*{imgUrl}" alt="image"></a>
+                </div>
+                <div class="card-body pb-1">
+                    <h5 class="card-title text-center" th:text="|*{make} *{model}|"></h5>
+                </div>
+                <ul class="offer-details list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="card-text text-center"><span th:text="|*{price} BGN|"></span></div>
+                    </li>
+                </ul>
+                </div>
+                <div th:if="${v.categoryName.name()} == 'MOTORBIKE'">
+                <h1><span class="badge badge-pill badge-dark">motorbike</span></h1>
+                <div class="card-img-top-wrapper">
+                    <a th:href="@{vehicles/details/(id = *{id})}">
+                        <img class="card-img-top" th:src="*{imgUrl}" alt="image"></a>
+                </div>
+                <div class="card-body pb-1">
+                    <h5 class="card-title text-center" th:text="|*{make} *{model}|"></h5>
+                </div>
+                <ul class="offer-details list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="card-text text-center"><span th:text="|*{price} BGN|"></span></div>
+                    </li>
+                </ul>
+                </div>
+                <div th:if="${v.categoryName.name()} == 'TRUCK'">
+                <h1><span class="badge badge-pill badge-dark">truck</span></h1>
+                <div class="card-img-top-wrapper">
+                    <a th:href="@{vehicles/details/(id = *{id})}">
+                        <img class="card-img-top" th:src="*{imgUrl}" alt="image"></a>
+                </div>
+                <div class="card-body pb-1">
+                    <h5 class="card-title text-center" th:text="|*{make} *{model}|"></h5>
+                </div>
+                <ul class="offer-details list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="card-text text-center"><span th:text="|*{price} BGN|"></span></div>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer class="footer bg-transparent  py-2">
+    <th:block th:include="~{/fragments/footer}"></th:block>
+</footer>
+</body>
+</html>
