@@ -4,6 +4,7 @@ import com.softuni.model.binding.RoleAddBindingModel;
 import com.softuni.model.binding.VehicleAddBindingModel;
 import com.softuni.service.RoleService;
 import com.softuni.service.UserService;
+import com.softuni.web.annotation.PageTitle;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -31,6 +32,7 @@ public class RolesController {
     }
 
     @GetMapping("/add")
+    @PageTitle("Roles Manager")
     @PreAuthorize(value = "hasAuthority('ADMIN')")
     public ModelAndView add(ModelAndView modelAndView, Principal principal, Model model){
         if (principal == null) {

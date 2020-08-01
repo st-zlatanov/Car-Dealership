@@ -5,6 +5,7 @@ import com.softuni.model.binding.VehicleAddBindingModel;
 import com.softuni.model.service.PartServiceModel;
 import com.softuni.model.service.VehicleServiceModel;
 import com.softuni.service.PartService;
+import com.softuni.web.annotation.PageTitle;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +33,7 @@ public class PartController {
     }
 
     @GetMapping("/add")
+    @PageTitle("Add Part")
     public ModelAndView add(Principal principal, ModelAndView modelAndView, Model model){
         if (principal == null) {
             modelAndView.setViewName("index");

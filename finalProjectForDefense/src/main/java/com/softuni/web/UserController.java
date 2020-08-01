@@ -1,6 +1,7 @@
 package com.softuni.web;
 
 import com.softuni.model.view.ProfileViewModel;
+import com.softuni.web.annotation.PageTitle;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -33,6 +34,7 @@ public class UserController {
     }
 
     @GetMapping("/login")
+    @PageTitle("Login")
     public String login(Model model) {
         if(!model.containsAttribute("userLoginBindingModel")){
             model.addAttribute("userLoginBindingModel", new UserLoginBindingModel());
@@ -61,6 +63,7 @@ public class UserController {
     }
 
     @GetMapping("/register")
+    @PageTitle("Register")
     public String register(Model model){
         if(!model.containsAttribute("userRegisterBindingModel")){
             model.addAttribute("userRegisterBindingModel", new UserRegisterBindingModel());
@@ -86,11 +89,11 @@ public class UserController {
     }
 
     @GetMapping("/profile")
+    @PageTitle("Profile")
     public ModelAndView profile(ModelAndView modelAndView, Principal principal){
         UserServiceModel userServiceModel = this.userService.findByUsername(principal.getName());
         ProfileViewModel profileViewModel = this.modelMapper.map(userServiceModel, ProfileViewModel.class);
         modelAndView.addObject("model", profileViewModel);
-     //   modelAndView.addObject("auth", this.userService.findAuthorities(principal.getName()));
         modelAndView.addObject("auth", profileViewModel.getAuthorities());
         modelAndView.addObject("admin", false);
         if(profileViewModel.getAuthorities().size()>1){
@@ -101,6 +104,7 @@ public class UserController {
     }
 
     @GetMapping("/view")
+    @PageTitle("All Users")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ModelAndView view(ModelAndView modelAndView) {
         modelAndView.addObject("users", this.userService.findAllUsers());

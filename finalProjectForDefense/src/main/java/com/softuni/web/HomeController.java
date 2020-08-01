@@ -2,6 +2,7 @@ package com.softuni.web;
 
 import com.softuni.service.PartService;
 import com.softuni.service.VehicleService;
+import com.softuni.web.annotation.PageTitle;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,6 +21,7 @@ public class HomeController {
     }
 
     @GetMapping("/")
+    @PageTitle("Home")
     public ModelAndView index(Principal principal, ModelAndView modelAndView) {
         if (principal == null) {
             modelAndView.setViewName("index");

@@ -4,6 +4,7 @@ import com.softuni.model.binding.VehicleAddBindingModel;
 import com.softuni.model.service.VehicleServiceModel;
 import com.softuni.service.PartService;
 import com.softuni.service.VehicleService;
+import com.softuni.web.annotation.PageTitle;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -30,6 +31,7 @@ public class VehicleController {
 
 
     @GetMapping("/add")
+    @PageTitle("Add Vehicle")
     @PreAuthorize("isAuthenticated()")
     public ModelAndView add(ModelAndView modelAndView, Model model) {
         if (!model.containsAttribute("vehicleAddBindingModel")) {
@@ -56,6 +58,7 @@ public class VehicleController {
     }
 
     @GetMapping("/details")
+    @PageTitle("Car Details")
     @PreAuthorize("isAuthenticated()")
     public ModelAndView details(ModelAndView modelAndView, @RequestParam("id") String id) {
         modelAndView.addObject("vehicle", this.vehicleService.findVehicleById(id));
@@ -67,6 +70,7 @@ public class VehicleController {
     }
 
     @GetMapping("/viewAll")
+    @PageTitle("All Cars")
     @PreAuthorize("isAuthenticated()")
     public ModelAndView viewAll(ModelAndView modelAndView) {
         modelAndView.addObject("vehicles", this.vehicleService.findAllVehicles());
