@@ -12,6 +12,7 @@ public class User extends BaseEntity implements UserDetails {
     private String password;
     private String email;
     private Set<Role> authorities;
+    private Set<Offer> offers;
 
     public User() {
     }
@@ -67,6 +68,14 @@ public class User extends BaseEntity implements UserDetails {
         this.email = email;
     }
 
+    @OneToMany
+    public Set<Offer> getOffers() {
+        return offers;
+    }
+
+    public void setOffers(Set<Offer> offers) {
+        this.offers = offers;
+    }
 
     @Override
     @Transient

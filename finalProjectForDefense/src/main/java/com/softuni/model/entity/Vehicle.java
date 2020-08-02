@@ -3,7 +3,6 @@ package com.softuni.model.entity;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Set;
 
 @Entity
 @Table(name = "vehicles")
@@ -15,6 +14,7 @@ public class Vehicle extends BaseEntity {
     private LocalDate yearOfManufacturing;
     private String description;
     private String imgUrl;
+    private User owner;
 
     public Vehicle() {
     }
@@ -82,5 +82,12 @@ public class Vehicle extends BaseEntity {
         this.imgUrl = imgUrl;
     }
 
+    @ManyToOne
+    public User getOwner() {
+        return owner;
+    }
 
+    public void setOwner(User ownerId) {
+        this.owner = ownerId;
+    }
 }

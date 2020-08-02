@@ -1,7 +1,9 @@
 package com.softuni.web;
 
 import com.softuni.model.binding.VehicleAddBindingModel;
+import com.softuni.model.entity.Vehicle;
 import com.softuni.model.service.VehicleServiceModel;
+import com.softuni.model.view.VehicleViewModel;
 import com.softuni.service.PartService;
 import com.softuni.service.VehicleService;
 import com.softuni.web.annotation.PageTitle;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
@@ -60,9 +63,11 @@ public class VehicleController {
     @GetMapping("/details")
     @PageTitle("Car Details")
     @PreAuthorize("isAuthenticated()")
-    public ModelAndView details(ModelAndView modelAndView, @RequestParam("id") String id) {
-        modelAndView.addObject("vehicle", this.vehicleService.findVehicleById(id));
-
+    public ModelAndView details(ModelAndView modelAndView, @RequestParam("id") String id, HttpSession httpSession) {
+        VehicleViewModel vehicle = this.vehicleService.findVehicleById(id);
+        modelAndView.addObject("vehicle", vehicle);
+        httpSession.setAttribute("receiver",vehicle.getOwner().getUsername());
+        httpSession.setAttribute("price",vehicle.getPrice());
         modelAndView.setViewName("vehicle-details");
 
 

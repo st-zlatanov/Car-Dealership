@@ -2,14 +2,15 @@ package com.softuni.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 
 @Entity
 @Table(name="offers")
 public class Offer extends BaseEntity{
-    private String sender;
-    private String receiver;
+    private User sender;
+    private User receiver;
     private String text;
     private BigDecimal price;
 
@@ -17,21 +18,21 @@ public class Offer extends BaseEntity{
     public Offer() {
     }
 
-    @Column(name="sender", nullable = false)
-    public String getSender() {
+    @ManyToOne
+    public User getSender() {
         return sender;
     }
 
-    public void setSender(String sender) {
+    public void setSender(User sender) {
         this.sender = sender;
     }
 
-    @Column(name="receiver", nullable = false)
-    public String getReceiver() {
+    @ManyToOne
+    public User getReceiver() {
         return receiver;
     }
 
-    public void setReceiver(String receiver) {
+    public void setReceiver(User receiver) {
         this.receiver = receiver;
     }
     @Column(name="text", nullable = false)

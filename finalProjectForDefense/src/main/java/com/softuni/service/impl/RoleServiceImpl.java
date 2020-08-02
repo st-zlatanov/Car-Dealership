@@ -34,16 +34,5 @@ public class RoleServiceImpl implements RoleService {
     }
 
 
-//    @PostConstruct
-//    public void init(){
-//        if(this.roleRepository.count()==0){
-//            Role admin = new Role("ADMIN");
-//            Role user = new Role("USER");
-//
-//            this.roleRepository.save(admin);
-//            this.roleRepository.save(user);
-//        }
-//    }
-
 
 }

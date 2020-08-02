@@ -35,22 +35,11 @@ public class UserServiceImpl implements UserService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
-//    @Override
-//    public UserServiceModel register(UserServiceModel userServiceModel) {
-//        userServiceModel.setAuthorities(this.roleService
-//                .findByName(this.userRepository.count()==0
-//                        ? "ADMIN" : "USER"));
-//        User user = this.modelMapper
-//                .map(userServiceModel, User.class);
-//
-//        return this.modelMapper
-//                .map(this.userRepository.saveAndFlush(user),
-//                        UserServiceModel.class);
-//    }
 
     @Override
     public UserServiceModel register(UserServiceModel userServiceModel) {
         User user = this.modelMapper.map(userServiceModel, User.class);
+        user.setOffers(new HashSet<>());
 
         if (this.userRepository.count() == 0) {
             user.setAuthorities(new HashSet<>(this.roleRepository.findAll()));

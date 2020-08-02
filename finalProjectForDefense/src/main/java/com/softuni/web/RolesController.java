@@ -1,7 +1,6 @@
 package com.softuni.web;
 
 import com.softuni.model.binding.RoleAddBindingModel;
-import com.softuni.model.binding.VehicleAddBindingModel;
 import com.softuni.service.RoleService;
 import com.softuni.service.UserService;
 import com.softuni.web.annotation.PageTitle;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpSession;
 import java.security.Principal;
 
 @Controller

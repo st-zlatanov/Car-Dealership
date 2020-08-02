@@ -34,18 +34,17 @@ public class PartController {
 
     @GetMapping("/add")
     @PageTitle("Add Part")
-    public ModelAndView add(Principal principal, ModelAndView modelAndView, Model model){
-        if (principal == null) {
-            modelAndView.setViewName("index");
-        } else {
-            if(!model.containsAttribute("partAddBindingModel")){
-                model.addAttribute("partAddBindingModel", new PartAddBindingModel());
-            }
-            modelAndView.setViewName("part-add");
+    public ModelAndView add(ModelAndView modelAndView, Model model) {
+
+        if (!model.containsAttribute("partAddBindingModel")) {
+            model.addAttribute("partAddBindingModel", new PartAddBindingModel());
         }
+        modelAndView.setViewName("part-add");
+
 
         return modelAndView;
     }
+
     @PostMapping("/add")
     public String addConfirm(@Valid @ModelAttribute("partAddBindingModel") PartAddBindingModel partAddBindingModel,
                              BindingResult bindingResult, RedirectAttributes redirectAttributes) {

@@ -1,6 +1,7 @@
 package com.softuni.model.view;
 
 import com.softuni.model.entity.CategoryName;
+import com.softuni.model.entity.User;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -15,6 +16,7 @@ public class VehicleViewModel {
     private CategoryName categoryName;
     private String imgUrl;
     private String description;
+    private User owner;
 
     public VehicleViewModel() {
     }
@@ -83,5 +85,11 @@ public class VehicleViewModel {
         this.description = description;
     }
 
+    public User getOwner() {
+        return owner;
+    }
 
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
 }

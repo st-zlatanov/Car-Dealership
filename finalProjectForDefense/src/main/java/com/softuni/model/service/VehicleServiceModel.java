@@ -1,5 +1,7 @@
 package com.softuni.model.service;
 
+import com.softuni.model.entity.User;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Set;
@@ -12,6 +14,7 @@ public class VehicleServiceModel extends BaseServiceModel {
     private LocalDate yearOfManufacturing;
     private String description;
     private String imgUrl;
+    private UserServiceModel owner;
 
     public VehicleServiceModel() {
     }
@@ -72,5 +75,11 @@ public class VehicleServiceModel extends BaseServiceModel {
         this.imgUrl = imgUrl;
     }
 
+    public UserServiceModel getOwner() {
+        return owner;
+    }
 
+    public void setOwner(UserServiceModel owner) {
+        this.owner = owner;
+    }
 }

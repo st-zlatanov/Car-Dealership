@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{/fragments/head}"></th:block>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg bg-nav rounded">
+        <th:block th:include="~{/fragments/nav}"></th:block>
+    </nav>
+</header>
+<main>
+    <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Send an offer</span></h1>
+    <hr class="hr-3 w-25 bg-white"/>
+    <form class="mx-auto w-25 bg-blur rounded" th:object="${offerAddBindingModel}" method="POST" th:action="@{/offers/create}">
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="sender" class="h4 mb-2 text-white">Sender</label>
+            </div>
+            <input th:value="${sender}" th:errorclass="bg-danger" type="text" class="form-control" id="sender" name="sender" readonly/>
+            <small th:each="e : ${#fields.errors('sender')}" th:text="${e}" class="text-danger">Sender error</small>
+        </div>
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="receiver" class="h4 mb-2 text-white">Receiver</label>
+            </div>
+            <input th:value="${receiver}" th:errorclass="bg-danger" type="text" class="form-control" id="receiver" name="receiver" readonly/>
+            <small th:each="e : ${#fields.errors('receiver')}" th:text="${e}" class="text-danger">Receiver error</small>
+        </div>
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="text" class="h4 mb-2 text-white">Offer description</label>
+            </div>
+            <textarea th:field="*{text}" th:errorclass="bg-danger" type="text" class="form-control" id="text" name="text"></textarea>
+            <small th:each="e : ${#fields.errors('text')}" th:text="${e}" class="text-danger">Text offer error</small>
+        </div>
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="price" class="h4 mb-2">Price for 1</label>
+            </div>
+            <input th:value="${price}" th:errorclass="bg-danger" type="number" step="0.1" class="form-control" id="price" name="price"/>
+            <small th:each="e : ${#fields.errors('price')}" th:text="${e}" class="text-danger">Price error message</small>
+        </div>
+        <div class="button-holder d-flex justify-content-center">
+            <button type="submit" class="btn btn-warning  mb-3" value="Offer">Send offer</button>
+        </div>
+    </form>
+</main>
+
+<footer class="footer bg-transparent  py-2">
+    <th:block th:include="~{/fragments/footer}"></th:block>
+</footer>
+</body>
+</html>
