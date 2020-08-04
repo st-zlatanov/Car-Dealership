@@ -25,6 +25,8 @@
                     <h5 class="card-title text-center" th:text="*{username}"></h5>
                     <h5 th:if="*{getAuthorities().size()>1}" class="card-title text-center">ADMIN</h5>
                     <h5 th:unless="*{getAuthorities().size()>1}" class="card-title text-center">USER</h5>
+                    <a th:unless="*{getAuthorities().size()>1}" th:text="Delete" th:href="@{/users/delete/{id}(id = *{id})}" class="btn btn-dark"></a>
+
                 </div>
 
             </div>

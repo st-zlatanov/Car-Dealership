@@ -7,10 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.softuni.model.binding.UserLoginBindingModel;
@@ -90,6 +87,7 @@ public class UserController {
 
     @GetMapping("/profile")
     @PageTitle("Profile")
+    @PreAuthorize("isAuthenticated()")
     public ModelAndView profile(ModelAndView modelAndView, Principal principal){
         UserServiceModel userServiceModel = this.userService.findByUsername(principal.getName());
         ProfileViewModel profileViewModel = this.modelMapper.map(userServiceModel, ProfileViewModel.class);
@@ -108,6 +106,13 @@ public class UserController {
     @PreAuthorize("hasAuthority('ADMIN')")
     public ModelAndView view(ModelAndView modelAndView) {
         modelAndView.addObject("users", this.userService.findAllUsers());
+        modelAndView.setViewName("view-users");
+        return modelAndView;
+    }
+
+    @GetMapping("/delete/{id}")
+    public ModelAndView delete(ModelAndView modelAndView, @PathVariable("id")String id){
+        this.userService.delete(id);
         modelAndView.setViewName("view-users");
         return modelAndView;
     }

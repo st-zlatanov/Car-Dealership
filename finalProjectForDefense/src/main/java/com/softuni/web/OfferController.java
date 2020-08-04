@@ -72,7 +72,6 @@ public class OfferController {
     public ModelAndView view(ModelAndView modelAndView, Model model){
 
         modelAndView.addObject("offers", this.offerService.getAllOffersForUser(this.authenticatedUserService.getUsername()));
-
         modelAndView.setViewName("offers-view");
 
         return modelAndView;

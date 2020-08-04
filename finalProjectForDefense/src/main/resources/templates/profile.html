@@ -13,14 +13,14 @@
     <div th:object="${model}" class="container bg-blur rounded mt-5 ">
         <th:block th:if="${admin}">
             <div class="col-xl-4 col-lg-4 col-md-12 mx-auto mb-4">
-                <img src="/static/img/admin.gif" width="100%">
+                <img src="/img/admin.gif" width="100%">
             </div>
             <h3 th:text="|Username: ${session.username}|"></h3>
             <h3>Authority: Admin</h3>
         </th:block>
         <th:block th:unless="${admin}">
             <div class="col-xl-4 col-lg-4 col-md-12 mx-auto mb-4">
-                <img src="/static/img/user.png" width="100%">
+                <img src="/img/user.png" width="100%">
             </div>
             <h3 th:text="|Username: ${session.username}|"></h3>
             <h3>Authority: User</h3>

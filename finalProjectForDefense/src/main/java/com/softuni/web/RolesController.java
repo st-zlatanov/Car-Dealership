@@ -32,7 +32,7 @@ public class RolesController {
     @GetMapping("/add")
     @PageTitle("Roles Manager")
     @PreAuthorize(value = "hasAuthority('ADMIN')")
-    public ModelAndView add(ModelAndView modelAndView, Principal principal, Model model){
+    public ModelAndView add(ModelAndView modelAndView, Principal principal){
         if (principal == null) {
             modelAndView.setViewName("index");
         } else {

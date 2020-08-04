@@ -6,6 +6,7 @@ import com.softuni.model.service.PartServiceModel;
 import com.softuni.model.service.VehicleServiceModel;
 import com.softuni.service.PartService;
 import com.softuni.web.annotation.PageTitle;
+import org.dom4j.rule.Mode;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,8 +58,9 @@ public class PartController {
     }
 
     @GetMapping("/buy/{id}")
-    public String delete(@PathVariable("id")String id){
+    public ModelAndView delete(ModelAndView modelAndView,@PathVariable("id")String id){
         this.partService.delete(id);
-        return "redirect:/";
+        modelAndView.setViewName("home");
+        return modelAndView;
     }
 }
