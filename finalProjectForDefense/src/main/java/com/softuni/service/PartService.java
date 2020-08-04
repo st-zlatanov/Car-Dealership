@@ -8,4 +8,6 @@ import java.util.List;
 public interface PartService {
     void addPart(PartServiceModel partServiceModel);
     List<PartViewModel> findAllParts();
+
+    void delete(String id);
 }

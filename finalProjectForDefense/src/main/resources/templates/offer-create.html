@@ -26,6 +26,12 @@
             </div>
             <input th:value="${receiver}" th:errorclass="bg-danger" type="text" class="form-control" id="receiver" name="receiver" readonly/>
             <small th:each="e : ${#fields.errors('receiver')}" th:text="${e}" class="text-danger">Receiver error</small>
+        </div><div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="vehicleId" class="h4 mb-2 text-white">Vehicle ID</label>
+            </div>
+            <input th:value="${vehicleId}" th:errorclass="bg-danger" type="text" class="form-control" id="vehicleId" name="vehicleId" readonly/>
+            <small th:each="e : ${#fields.errors('vehicleId')}" th:text="${e}" class="text-danger">Vehicle Id error</small>
         </div>
         <div class="form-group">
             <div class="label-holder textCol d-flex justify-content-center">
@@ -36,7 +42,7 @@
         </div>
         <div class="form-group">
             <div class="label-holder text-white textCol d-flex justify-content-center">
-                <label for="price" class="h4 mb-2">Price for 1</label>
+                <label for="price" class="h4 mb-2">Counter Price</label>
             </div>
             <input th:value="${price}" th:errorclass="bg-danger" type="number" step="0.1" class="form-control" id="price" name="price"/>
             <small th:each="e : ${#fields.errors('price')}" th:text="${e}" class="text-danger">Price error message</small>

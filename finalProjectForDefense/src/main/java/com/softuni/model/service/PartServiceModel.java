@@ -9,7 +9,7 @@ public class PartServiceModel extends BaseServiceModel {
     private BigDecimal price;
     private String description;
     private String condition;
-    private int quantity;
+
     private CategoryServiceModel category;
 
     public PartServiceModel() {
@@ -53,14 +53,6 @@ public class PartServiceModel extends BaseServiceModel {
 
     public void setCondition(String condition) {
         this.condition = condition;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 
     public CategoryServiceModel getCategory() {

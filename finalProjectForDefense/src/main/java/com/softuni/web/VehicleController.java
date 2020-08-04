@@ -68,6 +68,7 @@ public class VehicleController {
         modelAndView.addObject("vehicle", vehicle);
         httpSession.setAttribute("receiver",vehicle.getOwner().getUsername());
         httpSession.setAttribute("price",vehicle.getPrice());
+        httpSession.setAttribute("vehicleId",vehicle.getId());
         modelAndView.setViewName("vehicle-details");
 
 

@@ -43,4 +43,9 @@ public class PartServiceImpl implements PartService {
                 })
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public void delete(String id) {
+        this.partRepository.deleteById(id);
+    }
 }

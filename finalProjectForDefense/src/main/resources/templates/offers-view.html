@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <th:block th:include="~{/fragments/head}"></th:block>
 </head>
 <body>
+<header>
+    <nav class="navbar navbar-expand-lg bg-nav rounded">
+        <th:block th:include="~{/fragments/nav}"></th:block>
+    </nav>
+</header>
+<main>
 
+    <div th:each="o : ${offers}" th:object="${o}" class="container bg-blur rounded mt-5 ">
+        <div class="col-xl-4 col-lg-4 col-md-12 mx-auto mb-4">
+            <img th:src="*{vehicle.imgUrl}" width="100%">
+        </div>
+        <h3 th:text="|Sender: *{sender.username}|"></h3><h3 th:text="|Price: *{price}|"></h3>
+        <h3 th:text="|Vehicle: *{vehicle.make} *{vehicle.model}|"></h3><h3 th:text="|Id: *{vehicle.id}|"></h3>
+
+        <h3 th:text="|Description: *{text}|"></h3>
+
+
+    </div>
+</main>
+<footer class="footer bg-transparent  py-2">
+    <th:block th:include="~{/fragments/footer}"></th:block>
+</footer>
 </body>
 </html>

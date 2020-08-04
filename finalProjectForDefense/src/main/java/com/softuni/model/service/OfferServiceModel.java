@@ -7,6 +7,7 @@ public class OfferServiceModel {
     private String receiver;
     private String text;
     private BigDecimal price;
+    private String vehicleId;
 
     public OfferServiceModel() {
     }
@@ -41,5 +42,13 @@ public class OfferServiceModel {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public String getVehicleId() {
+        return vehicleId;
+    }
+
+    public void setVehicleId(String vehicleId) {
+        this.vehicleId = vehicleId;
     }
 }

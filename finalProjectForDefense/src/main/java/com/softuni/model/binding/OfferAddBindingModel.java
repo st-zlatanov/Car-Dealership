@@ -3,6 +3,7 @@ package com.softuni.model.binding;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 public class OfferAddBindingModel {
@@ -10,6 +11,7 @@ public class OfferAddBindingModel {
     private String receiver;
     private String text;
     private BigDecimal price;
+    private String vehicleId;
 
 
     public OfferAddBindingModel() {
@@ -49,5 +51,14 @@ public class OfferAddBindingModel {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    @NotNull
+    public String getVehicleId() {
+        return vehicleId;
+    }
+
+    public void setVehicleId(String vehicleId) {
+        this.vehicleId = vehicleId;
     }
 }

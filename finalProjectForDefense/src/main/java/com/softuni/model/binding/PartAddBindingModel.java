@@ -15,7 +15,7 @@ public class PartAddBindingModel {
     private BigDecimal price;
     private String description;
     private String condition;
-    private int quantity;
+
     private CategoryName category;
 
     public PartAddBindingModel() {
@@ -66,14 +66,6 @@ public class PartAddBindingModel {
         this.condition = condition;
     }
 
-    @Min(value = 0, message = "Enter valid quantity!")
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
 
     @NotNull(message = "Enter valid category name!")
     public CategoryName getCategory() {

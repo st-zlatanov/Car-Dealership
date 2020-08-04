@@ -28,13 +28,13 @@ public class OfferController {
     private final AuthenticatedUserService authenticatedUserService;
     private final ModelMapper modelMapper;
     private final OfferService offerService;
-    private final UserService userService;
+
 
     public OfferController(AuthenticatedUserService authenticatedUserService, ModelMapper modelMapper, OfferService offerService, UserService userService) {
         this.authenticatedUserService = authenticatedUserService;
         this.modelMapper = modelMapper;
         this.offerService = offerService;
-        this.userService = userService;
+
     }
 
     @GetMapping("/create")
@@ -47,6 +47,7 @@ public class OfferController {
         modelAndView.addObject("sender", this.authenticatedUserService.getUsername());
         modelAndView.addObject("receiver", httpSession.getAttribute("receiver"));
         modelAndView.addObject("price", httpSession.getAttribute("price"));
+        modelAndView.addObject("vehicleId", httpSession.getAttribute("vehicleId"));
         modelAndView.setViewName("offer-create");
 
         return modelAndView;

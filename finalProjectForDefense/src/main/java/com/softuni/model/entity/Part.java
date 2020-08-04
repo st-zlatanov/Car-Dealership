@@ -14,7 +14,6 @@ public class Part extends BaseEntity{
     private BigDecimal price;
     private String description;
     private String condition;
-    private int quantity;
     private Category category;
 
 
@@ -66,14 +65,6 @@ public class Part extends BaseEntity{
         this.condition = condition;
     }
 
-    @Column(name="quantity", nullable = false)
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
 
     @ManyToOne
     public Category getCategory() {

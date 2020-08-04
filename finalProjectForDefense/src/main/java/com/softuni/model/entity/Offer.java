@@ -10,6 +10,7 @@ public class Offer extends BaseEntity{
     private User receiver;
     private String text;
     private BigDecimal price;
+    private Vehicle vehicle;
 
 
     public Offer() {
@@ -51,5 +52,14 @@ public class Offer extends BaseEntity{
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    @OneToOne
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 }

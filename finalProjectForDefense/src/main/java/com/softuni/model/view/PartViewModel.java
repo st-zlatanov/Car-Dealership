@@ -9,7 +9,6 @@ public class PartViewModel {
     private BigDecimal price;
     private String description;
     private String condition;
-    private int quantity;
 
     public PartViewModel() {
     }
@@ -62,11 +61,4 @@ public class PartViewModel {
         this.condition = condition;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
 }
