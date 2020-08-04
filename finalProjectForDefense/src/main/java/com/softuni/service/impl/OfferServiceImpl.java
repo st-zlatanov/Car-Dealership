@@ -9,16 +9,21 @@ import com.softuni.service.AuthenticatedUserService;
 import com.softuni.service.OfferService;
 import com.softuni.service.UserService;
 import org.modelmapper.ModelMapper;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Service
 public class OfferServiceImpl implements OfferService {
     private final ModelMapper modelMapper;
     private final OfferRepository offerRepository;
-
     private final UserService userService;
 
-    public OfferServiceImpl(ModelMapper modelMapper, OfferRepository offerRepository, AuthenticatedUserService authenticatedUserService, UserService userService) {
+    public OfferServiceImpl(ModelMapper modelMapper, OfferRepository offerRepository, @Lazy
+            UserService userService) {
         this.modelMapper = modelMapper;
         this.offerRepository = offerRepository;
         this.userService = userService;
@@ -27,6 +32,7 @@ public class OfferServiceImpl implements OfferService {
     @Override
     public void addOffer(OfferServiceModel offerServiceModel) {
         User userReceiver =this.modelMapper.map(this.userService.findByUsername(offerServiceModel.getReceiver()),User.class);
+
         User userSender =this.modelMapper.map(this.userService.findByUsername(offerServiceModel.getSender()),User.class);
   //      User userSender = this.userService.findByUsername(offerServiceModel.getSender());
 
@@ -37,8 +43,19 @@ public class OfferServiceImpl implements OfferService {
 
         offer.setReceiver(userReceiver);
         offer.setSender(userSender);
-     //   offer.setSender(this.modelMapper.map(userSender, User.class));
+
+//        Set<Offer> userReceiverOffers = userReceiver.getOffers();
+//        userReceiverOffers.add(offer);
+//        userReceiver.setOffers(userReceiverOffers);
 
         this.offerRepository.saveAndFlush(offer);
+
+    }
+
+    @Override
+    public List<Offer> getAllOffersForUser(String username) {
+        User user = this.modelMapper.map(this.userService.findByUsername(username),User.class);
+
+       return new ArrayList<>(this.offerRepository.findByReceiver(user));
     }
 }

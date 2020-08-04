@@ -3,6 +3,7 @@ package com.softuni.model.entity;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -30,7 +31,7 @@ public class User extends BaseEntity implements UserDetails {
                     referencedColumnName = "id"
             )
     )
-//    @ManyToMany(targetEntity = Role.class, fetch = FetchType.EAGER)
+
     public Set<Role> getAuthorities() {
         return authorities;
     }
@@ -68,8 +69,11 @@ public class User extends BaseEntity implements UserDetails {
         this.email = email;
     }
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "receiver")
     public Set<Offer> getOffers() {
+        if (offers == null) {
+            offers = new HashSet<Offer>();
+        }
         return offers;
     }
 

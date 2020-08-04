@@ -1,9 +1,6 @@
 package com.softuni.model.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
@@ -18,7 +15,8 @@ public class Offer extends BaseEntity{
     public Offer() {
     }
 
-    @ManyToOne
+    @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name="sender_id", referencedColumnName = "id")
     public User getSender() {
         return sender;
     }
@@ -27,7 +25,8 @@ public class Offer extends BaseEntity{
         this.sender = sender;
     }
 
-    @ManyToOne
+    @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name="receiver_id", referencedColumnName = "id")
     public User getReceiver() {
         return receiver;
     }
@@ -35,6 +34,7 @@ public class Offer extends BaseEntity{
     public void setReceiver(User receiver) {
         this.receiver = receiver;
     }
+
     @Column(name="text", nullable = false)
     public String getText() {
         return text;

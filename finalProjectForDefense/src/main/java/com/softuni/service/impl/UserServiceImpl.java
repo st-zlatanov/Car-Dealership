@@ -1,7 +1,9 @@
 package com.softuni.service.impl;
 
+import com.softuni.model.entity.Offer;
 import com.softuni.model.service.RoleServiceModel;
 import com.softuni.repository.RoleRepository;
+import com.softuni.service.OfferService;
 import com.softuni.service.RoleService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,13 +28,15 @@ public class UserServiceImpl implements UserService {
     private final RoleRepository roleRepository;
     private final ModelMapper modelMapper;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final OfferService offerService;
 
-    public UserServiceImpl(UserRepository userRepository, RoleService roleService, RoleRepository roleRepository, ModelMapper modelMapper, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public UserServiceImpl(UserRepository userRepository, RoleService roleService, RoleRepository roleRepository, ModelMapper modelMapper, BCryptPasswordEncoder bCryptPasswordEncoder, OfferService offerService) {
         this.userRepository = userRepository;
         this.roleService = roleService;
         this.roleRepository = roleRepository;
         this.modelMapper = modelMapper;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.offerService = offerService;
     }
 
 
@@ -96,6 +100,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findAllUsers() {
         return new ArrayList<>(this.userRepository.findAll());
+    }
+
+    @Override
+    public List<Offer> getAllOffersOfUser(String username) {
+        return this.offerService.getAllOffersForUser(username);
+
     }
 
 

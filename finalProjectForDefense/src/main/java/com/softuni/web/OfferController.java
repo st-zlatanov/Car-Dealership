@@ -1,11 +1,11 @@
 package com.softuni.web;
 
 import com.softuni.model.binding.OfferAddBindingModel;
+import com.softuni.model.entity.User;
 import com.softuni.model.service.OfferServiceModel;
-import com.softuni.model.service.UserServiceModel;
-import com.softuni.model.service.VehicleServiceModel;
 import com.softuni.service.AuthenticatedUserService;
 import com.softuni.service.OfferService;
+import com.softuni.service.UserService;
 import com.softuni.web.annotation.PageTitle;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
@@ -28,11 +28,13 @@ public class OfferController {
     private final AuthenticatedUserService authenticatedUserService;
     private final ModelMapper modelMapper;
     private final OfferService offerService;
+    private final UserService userService;
 
-    public OfferController(AuthenticatedUserService authenticatedUserService, ModelMapper modelMapper, OfferService offerService) {
+    public OfferController(AuthenticatedUserService authenticatedUserService, ModelMapper modelMapper, OfferService offerService, UserService userService) {
         this.authenticatedUserService = authenticatedUserService;
         this.modelMapper = modelMapper;
         this.offerService = offerService;
+        this.userService = userService;
     }
 
     @GetMapping("/create")
@@ -63,6 +65,16 @@ public class OfferController {
         this.offerService.addOffer(this.modelMapper
                 .map(offerAddBindingModel, OfferServiceModel.class));
         return "redirect:/";
+    }
+    @GetMapping("/view")
+    @PageTitle("View Offers")
+    public ModelAndView view(ModelAndView modelAndView, Model model){
+
+        modelAndView.addObject("offers", this.offerService.getAllOffersForUser(this.authenticatedUserService.getUsername()));
+
+        modelAndView.setViewName("offers-view");
+
+        return modelAndView;
     }
 
 

@@ -1,6 +1,7 @@
 package com.softuni.service;
 
 
+import com.softuni.model.entity.Offer;
 import com.softuni.model.entity.User;
 import com.softuni.model.service.RoleServiceModel;
 import com.softuni.model.service.UserServiceModel;
@@ -20,4 +21,6 @@ public interface UserService extends UserDetailsService {
     List<RoleServiceModel> findAuthorities(String username);
 
     List<User> findAllUsers();
+
+    List<Offer> getAllOffersOfUser(String id);
 }
