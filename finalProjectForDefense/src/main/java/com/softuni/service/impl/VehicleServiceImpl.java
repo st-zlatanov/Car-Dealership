@@ -1,5 +1,6 @@
 package com.softuni.service.impl;
 
+import com.softuni.error.VehicleNotFoundException;
 import com.softuni.model.entity.User;
 import com.softuni.model.entity.Vehicle;
 import com.softuni.model.service.VehicleServiceModel;
@@ -58,7 +59,10 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public VehicleViewModel findVehicleById(String id) {
 
-        return this.modelMapper.map(vehicleRepository.findVehicleById(id), VehicleViewModel.class);
+        return this.vehicleRepository
+                .findById(id)
+                .map(v -> this.modelMapper.map(v, VehicleViewModel.class))
+                .orElseThrow(() -> new VehicleNotFoundException("Vehicle with the given id was not found!"));
     }
 
 

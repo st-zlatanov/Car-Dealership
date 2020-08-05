@@ -8,6 +8,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class RoleServiceImpl implements RoleService {
@@ -33,6 +35,14 @@ public class RoleServiceImpl implements RoleService {
         }
     }
 
+    @Override
+    public Set<RoleServiceModel> findAllRoles() {
+        return this.roleRepository.findAll()
+                .stream()
+                .map(r -> this.modelMapper.map(r, RoleServiceModel.class))
+                .collect(Collectors.toSet());
+
+    }
 
 
 }
