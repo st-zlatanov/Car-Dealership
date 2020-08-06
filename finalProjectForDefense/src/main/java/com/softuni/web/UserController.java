@@ -111,6 +111,7 @@ public class UserController {
     }
 
     @GetMapping("/delete/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ModelAndView delete(ModelAndView modelAndView, @PathVariable("id")String id){
         this.userService.delete(id);
         modelAndView.setViewName("view-users");
