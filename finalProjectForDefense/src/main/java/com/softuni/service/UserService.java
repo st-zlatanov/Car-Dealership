@@ -14,7 +14,7 @@ public interface UserService extends UserDetailsService {
 
     UserServiceModel findByUsername(String username);
 
-    List<String> findAllUsernames();
+    List<String> findAllUsernames(String username);
 
     void addRoleToUser(String username, String role);
 

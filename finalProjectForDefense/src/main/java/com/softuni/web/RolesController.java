@@ -1,5 +1,6 @@
 package com.softuni.web;
 
+import com.softuni.error.ChangeYourOwnRoleException;
 import com.softuni.model.binding.RoleAddBindingModel;
 import com.softuni.service.RoleService;
 import com.softuni.service.UserService;
@@ -31,22 +32,20 @@ public class RolesController {
     @GetMapping("/add")
     @PageTitle("Roles Manager")
     @PreAuthorize(value = "hasAuthority('ADMIN')")
-    public ModelAndView add(ModelAndView modelAndView, Principal principal){
-        if (principal == null) {
-            modelAndView.setViewName("index");
-        } else {
-            modelAndView.addObject("usernames", this.userService.findAllUsernames());
-            modelAndView.setViewName("users/role-add");
-        }
+    public ModelAndView add(ModelAndView modelAndView, Principal principal) {
+
+
+        modelAndView.addObject("usernames", this.userService.findAllUsernames(principal.getName()));
+        modelAndView.setViewName("users/role-add");
+
         return modelAndView;
     }
 
     @PostMapping("/add")
     public String addConfirm(@ModelAttribute("roleAddBindingModel")
-                                         RoleAddBindingModel roleAddBindingModel, Principal principal){
-        if(principal.getName().equals(roleAddBindingModel.getUsername())){
-            return "redirect:/error";
-            //da vryshta error
+                                     RoleAddBindingModel roleAddBindingModel, Principal principal) {
+        if (principal.getName().equals(roleAddBindingModel.getUsername())) {
+            throw new ChangeYourOwnRoleException("You can't change your own role!");
         }
         this.userService.addRoleToUser(roleAddBindingModel.getUsername(), roleAddBindingModel.getRole());
 

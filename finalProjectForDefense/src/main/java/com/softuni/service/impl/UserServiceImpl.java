@@ -1,5 +1,6 @@
 package com.softuni.service.impl;
 
+import com.softuni.error.UserNotFoundException;
 import com.softuni.model.entity.Offer;
 import com.softuni.model.service.RoleServiceModel;
 import com.softuni.repository.RoleRepository;
@@ -63,14 +64,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<String> findAllUsernames() {
-        return this.userRepository.findAll().stream().map(User::getUsername).collect(Collectors.toList());
+    public List<String> findAllUsernames(String username) {
+        List<String> usernames = this.userRepository.findAll().stream().map(User::getUsername).collect(Collectors.toList());
+        usernames.remove(username);
+        return usernames;
     }
 
     @Override
     public void addRoleToUser(String username, String auth) {
-        User user = this.userRepository.findByUsername(username).orElse(null);
+        User user = this.userRepository.findByUsername(username)
+                .orElseThrow(() -> new UserNotFoundException("User not found!"));
         UserServiceModel userServiceModel = this.modelMapper.map(user, UserServiceModel.class);
+
 
         boolean hasAuthority = false;
 
@@ -92,9 +97,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<RoleServiceModel> findAuthorities(String username) {
-        User user = this.userRepository.findByUsername(username).orElse(null);
+        User user = this.userRepository.findByUsername(username)
+                .orElseThrow(() -> new UserNotFoundException("User not found!"));
         UserServiceModel userServiceModel = this.modelMapper.map(user, UserServiceModel.class);
-        return userServiceModel.getAuthorities().stream().collect(Collectors.toList());
+        return new ArrayList<>(userServiceModel.getAuthorities());
     }
 
     @Override
