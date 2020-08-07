@@ -1,6 +1,7 @@
 package com.softuni.web;
 
 import com.softuni.model.binding.VehicleAddBindingModel;
+import com.softuni.model.entity.CategoryName;
 import com.softuni.model.entity.Vehicle;
 import com.softuni.model.service.VehicleServiceModel;
 import com.softuni.model.view.VehicleViewModel;
@@ -83,6 +84,36 @@ public class VehicleController {
 
         modelAndView.setViewName("vehicle-viewAll");
 
+
+        return modelAndView;
+    }
+
+    @GetMapping("/showCars")
+    @PageTitle("Only Cars")
+    @PreAuthorize("isAuthenticated()")
+    public ModelAndView showCars(ModelAndView modelAndView) {
+        modelAndView.addObject("vehicles", this.vehicleService.findAllVehiclesByCategory(CategoryName.CAR));
+        modelAndView.setViewName("vehicle-viewAll");
+
+        return modelAndView;
+    }
+
+    @GetMapping("/showBikes")
+    @PageTitle("Only Motorbikes")
+    @PreAuthorize("isAuthenticated()")
+    public ModelAndView showMotorbikes(ModelAndView modelAndView) {
+        modelAndView.addObject("vehicles", this.vehicleService.findAllVehiclesByCategory(CategoryName.MOTORBIKE));
+        modelAndView.setViewName("vehicle-viewAll");
+
+        return modelAndView;
+    }
+
+    @GetMapping("/showTrucks")
+    @PageTitle("Only Trucks")
+    @PreAuthorize("isAuthenticated()")
+    public ModelAndView showTrucks(ModelAndView modelAndView) {
+        modelAndView.addObject("vehicles", this.vehicleService.findAllVehiclesByCategory(CategoryName.TRUCK));
+        modelAndView.setViewName("vehicle-viewAll");
 
         return modelAndView;
     }

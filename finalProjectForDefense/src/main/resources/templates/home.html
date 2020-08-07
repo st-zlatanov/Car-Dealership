@@ -10,57 +10,61 @@
     </nav>
 </header>
 <main>
-    <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Vehicles</span></h1>
-    <hr class="hr-3"/>
-    <div th:if="${vehicles.size()==0}">
-        <h2 class="text-center mt-2"><span class="badge badge-pill badge-dark">No vehicles are available at the moment!</span></h2>
-    </div>
-    <div th:unless="${vehicles.size()==0}" class="container-fluid">
-        <div class="offers row mx-auto d-flex flex-row justify-content-center">
-            <div th:each="v : ${vehicles}" th:object="${v}" class="offer card col-sm-6 col-md-3  col-lg-2 m-1 p-0">
-
-                <div class="card-img-top-wrapper">
-                    <a th:href="@{vehicles/details/(id = *{id})}">
-                        <img class="card-img-top" th:src="*{imgUrl}" alt="car-image"></a>
-                </div>
-                <div class="card-body pb-1">
-                    <h5 class="card-title text-center" th:text="|*{make} *{model}|"></h5>
-                </div>
-                <ul class="offer-details list-group list-group-flush">
-                    <li class="list-group-item">
-                        <div class="card-text text-center"><span th:text="|*{price} BGN|"></span></div>
-                    </li>
-                </ul>
-            </div>
+    <div style="width: 40%; float:left; height:600px; margin:70px">
+        <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Vehicles</span></h1>
+        <hr class="hr-3"/>
+        <div th:if="${vehicles.size()==0}">
+            <h2 class="text-center mt-2"><span class="badge badge-pill badge-dark">No vehicles are available at the moment!</span></h2>
         </div>
-        <!--   <a text="See all vehicles" href="/" class="btn btn-dark"></a> -->
-        <h4 class="text-center mt-2"><a href="/" class="badge badge-pill badge-dark">See all vehicles</a></h4>
-        <!--  <a th:text="See all" th:href="@{/vehicles/viewAll}" class="btn btn-dark"></a> -->
-    </div>
-    <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Parts</span></h1>
-    <hr class="hr-3"/>
-    <div th:if="${parts.size()==0}">
-        <h2 class="text-center mt-2"><span class="badge badge-pill badge-dark">No parts are available at the moment!</span></h2>
-    </div>
-    <div th:unless="${parts.size()==0}" class="container-fluid">
-        <div class="offers row mx-auto d-flex flex-row justify-content-center">
-            <div th:each="p : ${parts}" th:object="${p}" class="offer card col-sm-6 col-md-3  col-lg-2 m-1 p-0">
-                <div class="card-img-top-wrapper">
-                    <img class="card-img-top" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/8cc9595364efa0fc-org-1584048843.jpg" alt="image">
-                </div>
-                <div class="card-body pb-1">
-                    <h5 class="card-title text-center" th:text="|*{name} for *{carModel}|"></h5>
-                </div>
-                <ul class="offer-details list-group list-group-flush">
-                    <li class="list-group-item">
-                        <div class="card-text text-center"><span th:text="|*{price} BGN|"></span></div>
-                    </li>
-                </ul>
+        <div th:unless="${vehicles.size()==0}" class="container-fluid">
+            <div class="offers row mx-auto d-flex flex-row justify-content-center">
+                <div th:each="v : ${vehicles}" th:object="${v}" class="offer card col-sm-3 col-md-3  col-lg-2 m-1 p-0">
 
-                <a th:text="Buy" th:href="@{/parts/buy/{id}(id = *{id})}" class="btn btn-dark"></a>
+                    <div class="card-img-top-wrapper">
+                        <a th:href="@{vehicles/details/(id = *{id})}">
+                            <img class="card-img-top" th:src="*{imgUrl}" alt="car-image"></a>
+                    </div>
+                    <div class="card-body pb-1">
+                        <h5 class="card-title text-center" th:text="|*{make} *{model}|"></h5>
+                    </div>
+                    <ul class="offer-details list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="card-text text-center"><span th:text="|*{price} BGN|"></span></div>
+                        </li>
+                    </ul>
+                </div>
             </div>
+            <!--   <a text="See all vehicles" href="/" class="btn btn-dark"></a> -->
+            <h4 class="text-center mt-2"><a href="/vehicles/viewAll" class="badge badge-pill badge-dark">See all vehicles</a></h4>
+            <!--  <a th:text="See all" th:href="@{/vehicles/viewAll}" class="btn btn-dark"></a> -->
         </div>
-        <h4 class="text-center mt-2"><a href="/" class="badge badge-pill badge-dark">See all parts</a></h4>
+    </div>
+    <div style="width: 40%; float:left; height:600px; margin:70px">
+        <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Parts</span></h1>
+        <hr class="hr-3"/>
+        <div th:if="${parts.size()==0}">
+            <h2 class="text-center mt-2"><span class="badge badge-pill badge-dark">No parts are available at the moment!</span></h2>
+        </div>
+        <div th:unless="${parts.size()==0}" class="container-fluid">
+            <div class="offers row mx-auto d-flex flex-row justify-content-center">
+                <div th:each="p : ${parts}" th:object="${p}" class="offer card col-sm-3 col-md-3  col-lg-2 m-1 p-0">
+                    <div class="card-img-top-wrapper">
+                        <img class="card-img-top" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/8cc9595364efa0fc-org-1584048843.jpg" alt="image">
+                    </div>
+                    <div class="card-body pb-1">
+                        <h5 class="card-title text-center" th:text="|*{name} for *{carModel}|"></h5>
+                    </div>
+                    <ul class="offer-details list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="card-text text-center"><span th:text="|*{price} BGN|"></span></div>
+                        </li>
+                    </ul>
+
+                    <a th:text="Buy" th:href="@{/parts/buy/{id}(id = *{id})}" class="btn btn-dark"></a>
+                </div>
+            </div>
+            <h4 class="text-center mt-2"><a href="/parts/viewAll" class="badge badge-pill badge-dark">See all parts</a></h4>
+        </div>
     </div>
 </main>
 <footer class="footer bg-transparent  py-2">

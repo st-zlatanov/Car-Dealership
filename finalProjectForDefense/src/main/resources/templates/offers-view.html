@@ -10,7 +10,9 @@
     </nav>
 </header>
 <main>
-
+    <div th:if="${offers.size()==0}">
+        <h2 class="text-center mt-2"><span class="badge badge-pill badge-dark">You haven't received any offers yet!</span></h2>
+    </div>
     <div th:each="o : ${offers}" th:object="${o}" class="container bg-blur rounded mt-5 ">
         <div class="col-xl-4 col-lg-4 col-md-12 mx-auto mb-4">
             <img th:src="*{vehicle.imgUrl}" width="100%">

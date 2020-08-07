@@ -1,6 +1,8 @@
 package com.softuni.service.impl;
 
 import com.softuni.error.VehicleNotFoundException;
+import com.softuni.model.entity.Category;
+import com.softuni.model.entity.CategoryName;
 import com.softuni.model.entity.User;
 import com.softuni.model.entity.Vehicle;
 import com.softuni.model.service.VehicleServiceModel;
@@ -63,6 +65,19 @@ public class VehicleServiceImpl implements VehicleService {
                 .findById(id)
                 .map(v -> this.modelMapper.map(v, VehicleViewModel.class))
                 .orElseThrow(() -> new VehicleNotFoundException("Vehicle with the given id was not found!"));
+    }
+
+    @Override
+    public List<VehicleViewModel> findAllVehiclesByCategory(CategoryName category) {
+        Category category1 = this.categoryService.find(category);
+        return this.vehicleRepository.findAll().stream().filter(v->v.getCategory().getName().equals(category1.getName()))
+                .map(vehicle -> {
+                    VehicleViewModel vehicleViewModel = this.modelMapper.map(vehicle, VehicleViewModel.class);
+
+
+                    return vehicleViewModel;
+                })
+                .collect(Collectors.toList());
     }
 
 

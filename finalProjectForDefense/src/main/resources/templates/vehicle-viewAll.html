@@ -10,17 +10,20 @@
     </nav>
 </header>
 <main>
-    <h3><a href="/vehicles/showCars" class="badge badge-pill badge-dark">Show Only Cars</a></h3>
-    <h3><a href="/vehicles/showBikes" class="badge badge-pill badge-dark">Show Only Motorbikes</a></h3>
-    <h3><a href="/vehicles/showTrucks" class="badge badge-pill badge-dark">Show Only Trucks</a></h3>
-    <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Vehicles</span></h1>
+    <h3 style="float:left; margin:10px 140px 10px"><a href="/vehicles/showCars" class="badge badge-pill badge-dark">Show Only Cars</a></h3>
+    <h3 style="float:left; margin:10px 140px 10px"><a href="/vehicles/showBikes" class="badge badge-pill badge-dark">Show Only Motorbikes</a></h3>
+    <h3 style="float:left; margin:10px 140px 10px"><a href="/vehicles/showTrucks" class="badge badge-pill badge-dark">Show Only Trucks</a></h3>
+    <hr class="hr-3"/>
+    <hr class="hr-3"/>
+    <hr class="hr-3"/>
+    <hr class="hr-3"/>
     <hr class="hr-3"/>
     <div class="container-fluid">
         <div class="offers row mx-auto d-flex flex-row justify-content-center">
             <div th:each="v : ${vehicles}" th:object="${v}" class="offer card col-sm-6 col-md-3  col-lg-2 m-1 p-0">
 
                 <div th:if="${v.categoryName.name()} == 'CAR'">
-                <h1><span class="badge badge-pill badge-dark">car</span></h1>
+                <h1><span class="card-title text-center" th:text="*{categoryName.name()}"></span></h1>
                 <div class="card-img-top-wrapper">
                     <a th:href="@{details/(id = *{id})}">
                         <img class="card-img-top" th:src="*{imgUrl}" alt="image"></a>
@@ -35,7 +38,7 @@
                 </ul>
                 </div>
                 <div th:if="${v.categoryName.name()} == 'MOTORBIKE'">
-                <h1><span class="badge badge-pill badge-dark">motorbike</span></h1>
+                    <h1><span class="card-title text-center" th:text="*{categoryName.name()}"></span></h1>
                 <div class="card-img-top-wrapper">
                     <a th:href="@{vehicles/details/(id = *{id})}">
                         <img class="card-img-top" th:src="*{imgUrl}" alt="image"></a>
@@ -50,7 +53,7 @@
                 </ul>
                 </div>
                 <div th:if="${v.categoryName.name()} == 'TRUCK'">
-                <h1><span class="badge badge-pill badge-dark">truck</span></h1>
+                    <h1><span class="card-title text-center" th:text="*{categoryName.name()}"></span></h1>
                 <div class="card-img-top-wrapper">
                     <a th:href="@{vehicles/details/(id = *{id})}">
                         <img class="card-img-top" th:src="*{imgUrl}" alt="image"></a>

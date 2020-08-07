@@ -8,6 +8,7 @@ import com.softuni.service.PartService;
 import com.softuni.web.annotation.PageTitle;
 import org.dom4j.rule.Mode;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -63,4 +64,17 @@ public class PartController {
         modelAndView.setViewName("home");
         return modelAndView;
     }
+
+    @GetMapping("/viewAll")
+    @PageTitle("All Cars")
+    @PreAuthorize("isAuthenticated()")
+    public ModelAndView viewAll(ModelAndView modelAndView) {
+        modelAndView.addObject("parts", this.partService.findAllParts());
+
+        modelAndView.setViewName("parts-viewAll");
+
+
+        return modelAndView;
+    }
+
 }
