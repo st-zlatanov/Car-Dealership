@@ -19,4 +19,38 @@ public class VehicleControllerTest extends ControllerTestBase {
                 .andExpect(model().attributeExists("vehicleAddBindingModel"));
     }
 
+    @Test
+    @WithMockUser(username = "Stiliyan")
+    public void vehiclesViewAll_shouldReturnCorrectView() throws Exception {
+        this.mockMvc
+                .perform(get("/vehicles/viewAll"))
+                .andExpect(view().name("vehicle-viewAll"))
+                .andExpect(model().attributeExists("vehicles"));
+    }
+
+    @Test
+    @WithMockUser(username = "Stiliyan")
+    public void vehiclesShowCars_shouldReturnCorrectView() throws Exception {
+        this.mockMvc
+                .perform(get("/vehicles/showCars"))
+                .andExpect(view().name("vehicle-viewAll"))
+                .andExpect(model().attributeExists("vehicles"));
+    }
+    @Test
+    @WithMockUser(username = "Stiliyan")
+    public void vehiclesShowBikes_shouldReturnCorrectView() throws Exception {
+        this.mockMvc
+                .perform(get("/vehicles/showBikes"))
+                .andExpect(view().name("vehicle-viewAll"))
+                .andExpect(model().attributeExists("vehicles"));
+    }
+    @Test
+    @WithMockUser(username = "Stiliyan")
+    public void vehiclesShowTrucks_shouldReturnCorrectView() throws Exception {
+        this.mockMvc
+                .perform(get("/vehicles/showTrucks"))
+                .andExpect(view().name("vehicle-viewAll"))
+                .andExpect(model().attributeExists("vehicles"));
+    }
+
 }
