@@ -1,12 +1,9 @@
 package com.softuni.web;
 
 import com.softuni.model.binding.PartAddBindingModel;
-import com.softuni.model.binding.VehicleAddBindingModel;
 import com.softuni.model.service.PartServiceModel;
-import com.softuni.model.service.VehicleServiceModel;
 import com.softuni.service.PartService;
 import com.softuni.web.annotation.PageTitle;
-import org.dom4j.rule.Mode;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -16,9 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.security.Principal;
 
 @Controller
 @RequestMapping("/parts")
@@ -38,7 +33,7 @@ public class PartController {
         if (!model.containsAttribute("partAddBindingModel")) {
             model.addAttribute("partAddBindingModel", new PartAddBindingModel());
         }
-        modelAndView.setViewName("part-add");
+        modelAndView.setViewName("parts/part-add");
 
 
         return modelAndView;
@@ -71,7 +66,7 @@ public class PartController {
     public ModelAndView viewAll(ModelAndView modelAndView) {
         modelAndView.addObject("parts", this.partService.findAllParts());
 
-        modelAndView.setViewName("parts-viewAll");
+        modelAndView.setViewName("parts/parts-viewAll");
 
 
         return modelAndView;

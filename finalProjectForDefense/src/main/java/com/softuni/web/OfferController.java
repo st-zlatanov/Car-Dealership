@@ -1,7 +1,6 @@
 package com.softuni.web;
 
 import com.softuni.model.binding.OfferAddBindingModel;
-import com.softuni.model.entity.User;
 import com.softuni.model.service.OfferServiceModel;
 import com.softuni.service.AuthenticatedUserService;
 import com.softuni.service.OfferService;
@@ -48,7 +47,7 @@ public class OfferController {
         modelAndView.addObject("receiver", httpSession.getAttribute("receiver"));
         modelAndView.addObject("price", httpSession.getAttribute("price"));
         modelAndView.addObject("vehicleId", httpSession.getAttribute("vehicleId"));
-        modelAndView.setViewName("offer-create");
+        modelAndView.setViewName("offers/offer-create");
 
         return modelAndView;
     }
@@ -72,7 +71,7 @@ public class OfferController {
     public ModelAndView view(ModelAndView modelAndView, Model model){
 
         modelAndView.addObject("offers", this.offerService.getAllOffersForUser(this.authenticatedUserService.getUsername()));
-        modelAndView.setViewName("offers-view");
+        modelAndView.setViewName("offers/offers-view");
 
         return modelAndView;
     }

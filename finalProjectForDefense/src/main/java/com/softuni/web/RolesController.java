@@ -7,7 +7,6 @@ import com.softuni.web.annotation.PageTitle;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,7 +36,7 @@ public class RolesController {
             modelAndView.setViewName("index");
         } else {
             modelAndView.addObject("usernames", this.userService.findAllUsernames());
-            modelAndView.setViewName("role-add");
+            modelAndView.setViewName("users/role-add");
         }
         return modelAndView;
     }

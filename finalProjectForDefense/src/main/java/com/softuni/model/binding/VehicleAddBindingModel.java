@@ -80,7 +80,7 @@ public class VehicleAddBindingModel {
     public void setCategory(CategoryName category) {
         this.category = category;
     }
-    
+
     @Length(min = 1, message = "Enter valid image url!")
     public String getImgUrl() {
         return imgUrl;

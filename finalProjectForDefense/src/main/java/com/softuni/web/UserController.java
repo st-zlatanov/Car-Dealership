@@ -36,7 +36,7 @@ public class UserController {
         if(!model.containsAttribute("userLoginBindingModel")){
             model.addAttribute("userLoginBindingModel", new UserLoginBindingModel());
         }
-     return "login";
+     return "users/login";
     }
     @PostMapping("/login")
     public String loginConfirm(@Valid
@@ -66,7 +66,7 @@ public class UserController {
             model.addAttribute("userRegisterBindingModel", new UserRegisterBindingModel());
         }
 
-        return "register";
+        return "users/register";
     }
 
     @PostMapping("/register")
@@ -97,7 +97,7 @@ public class UserController {
         if(profileViewModel.getAuthorities().size()>1){
             modelAndView.addObject("admin", true);
         }
-        modelAndView.setViewName("profile");
+        modelAndView.setViewName("users/profile");
         return modelAndView;
     }
 
@@ -106,7 +106,7 @@ public class UserController {
     @PreAuthorize("hasAuthority('ADMIN')")
     public ModelAndView view(ModelAndView modelAndView) {
         modelAndView.addObject("users", this.userService.findAllUsers());
-        modelAndView.setViewName("view-users");
+        modelAndView.setViewName("users/view-users");
         return modelAndView;
     }
 
@@ -114,7 +114,7 @@ public class UserController {
     @PreAuthorize("hasAuthority('ADMIN')")
     public ModelAndView delete(ModelAndView modelAndView, @PathVariable("id")String id){
         this.userService.delete(id);
-        modelAndView.setViewName("view-users");
+        modelAndView.setViewName("home");
         return modelAndView;
     }
 
