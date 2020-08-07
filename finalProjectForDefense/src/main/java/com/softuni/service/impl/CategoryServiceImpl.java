@@ -1,5 +1,6 @@
 package com.softuni.service.impl;
 
+import com.softuni.error.CategoryNotFoundException;
 import com.softuni.model.entity.Category;
 import com.softuni.model.entity.CategoryName;
 import com.softuni.repository.CategoryRepository;
@@ -30,6 +31,6 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public Category find(CategoryName name) {
         return this.categoryRepository
-                .findByName(name).orElse(null);
+                .findByName(name).orElseThrow(CategoryNotFoundException::new);
     }
 }

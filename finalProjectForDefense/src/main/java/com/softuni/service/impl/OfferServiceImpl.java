@@ -36,10 +36,7 @@ public class OfferServiceImpl implements OfferService {
         User userReceiver =this.modelMapper.map(this.userService.findByUsername(offerServiceModel.getReceiver()),User.class);
 
         User userSender =this.modelMapper.map(this.userService.findByUsername(offerServiceModel.getSender()),User.class);
-  //      User userSender = this.userService.findByUsername(offerServiceModel.getSender());
 
-//        offerServiceModel.setSender(userSender);
-//        offerServiceModel.setReceiver(userReceiver);
         Vehicle vehicle = this.modelMapper.map(this.vehicleService.findVehicleById(offerServiceModel.getVehicleId()), Vehicle.class);
         Offer offer = this.modelMapper.map(offerServiceModel, Offer.class);
 
@@ -47,9 +44,6 @@ public class OfferServiceImpl implements OfferService {
         offer.setSender(userSender);
         offer.setVehicle(vehicle);
 
-//        Set<Offer> userReceiverOffers = userReceiver.getOffers();
-//        userReceiverOffers.add(offer);
-//        userReceiver.setOffers(userReceiverOffers);
 
         this.offerRepository.saveAndFlush(offer);
 
