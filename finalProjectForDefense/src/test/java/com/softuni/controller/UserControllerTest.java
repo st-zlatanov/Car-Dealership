@@ -13,14 +13,14 @@ public class UserControllerTest extends ControllerTestBase {
     public void usersLogin_shouldReturnCorrectView() throws Exception {
         this.mockMvc
                 .perform(get("/users/login"))
-                .andExpect(view().name("login"))
+                .andExpect(view().name("users/login"))
                 .andExpect(model().attributeExists("userLoginBindingModel"));
     }
     @Test
     public void usersRegister_shouldReturnCorrectView() throws Exception {
         this.mockMvc
                 .perform(get("/users/register"))
-                .andExpect(view().name("register"))
+                .andExpect(view().name("users/register"))
                 .andExpect(model().attributeExists("userRegisterBindingModel"));
     }
     @Test
@@ -28,7 +28,7 @@ public class UserControllerTest extends ControllerTestBase {
     public void usersProfile_shouldReturnCorrectView() throws Exception {
         this.mockMvc
                 .perform(get("/users/profile"))
-                .andExpect(view().name("profile"))
+                .andExpect(view().name("users/profile"))
                 .andExpect(model().attributeExists("model", "auth", "admin"));
     }
     @Test
@@ -36,7 +36,7 @@ public class UserControllerTest extends ControllerTestBase {
     public void usersViewAll_shouldReturnCorrectView() throws Exception {
         this.mockMvc
                 .perform(get("/users/view"))
-                .andExpect(view().name("view-users"))
+                .andExpect(view().name("users/view-users"))
                 .andExpect(model().attributeExists("users"));
     }
 

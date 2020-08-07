@@ -15,7 +15,7 @@ public class VehicleControllerTest extends ControllerTestBase {
     public void vehiclesAdd_shouldReturnCorrectView() throws Exception {
         this.mockMvc
                 .perform(get("/vehicles/add"))
-                .andExpect(view().name("vehicle-add"))
+                .andExpect(view().name("vehicles/vehicle-add"))
                 .andExpect(model().attributeExists("vehicleAddBindingModel"));
     }
 
@@ -24,7 +24,7 @@ public class VehicleControllerTest extends ControllerTestBase {
     public void vehiclesViewAll_shouldReturnCorrectView() throws Exception {
         this.mockMvc
                 .perform(get("/vehicles/viewAll"))
-                .andExpect(view().name("vehicle-viewAll"))
+                .andExpect(view().name("vehicles/vehicle-viewAll"))
                 .andExpect(model().attributeExists("vehicles"));
     }
 
@@ -33,7 +33,7 @@ public class VehicleControllerTest extends ControllerTestBase {
     public void vehiclesShowCars_shouldReturnCorrectView() throws Exception {
         this.mockMvc
                 .perform(get("/vehicles/showCars"))
-                .andExpect(view().name("vehicle-viewAll"))
+                .andExpect(view().name("vehicles/vehicle-viewAll"))
                 .andExpect(model().attributeExists("vehicles"));
     }
     @Test
@@ -41,7 +41,7 @@ public class VehicleControllerTest extends ControllerTestBase {
     public void vehiclesShowBikes_shouldReturnCorrectView() throws Exception {
         this.mockMvc
                 .perform(get("/vehicles/showBikes"))
-                .andExpect(view().name("vehicle-viewAll"))
+                .andExpect(view().name("vehicles/vehicle-viewAll"))
                 .andExpect(model().attributeExists("vehicles"));
     }
     @Test
@@ -49,7 +49,7 @@ public class VehicleControllerTest extends ControllerTestBase {
     public void vehiclesShowTrucks_shouldReturnCorrectView() throws Exception {
         this.mockMvc
                 .perform(get("/vehicles/showTrucks"))
-                .andExpect(view().name("vehicle-viewAll"))
+                .andExpect(view().name("vehicles/vehicle-viewAll"))
                 .andExpect(model().attributeExists("vehicles"));
     }
 

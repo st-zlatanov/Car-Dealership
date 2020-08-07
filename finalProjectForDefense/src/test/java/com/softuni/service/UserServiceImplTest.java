@@ -43,6 +43,20 @@ class UserServiceImplTest extends TestBase {
         when(userRepository.findAll())
                 .thenReturn(usersList);
     }
+    @Test
+    void registerUser_shouldRegisterCorrect() {
+        usersList.clear();
+
+        User user = new User();
+        user.setUsername("newUser");
+
+        usersList.add(user);
+        UserServiceModel model = modelMapper.map(user,UserServiceModel.class);
+        model.setUsername("taken");
+
+        when(userRepository.count()).thenReturn(1L);
+        assertEquals(usersList.size(),userRepository.count());
+    }
 
     @Test
     void findByUsername_shouldReturnUser_whenUserHasUsername() {

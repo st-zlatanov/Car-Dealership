@@ -14,7 +14,7 @@ public class RolesControllerTest extends ControllerTestBase {
     public void rolesAdd_shouldReturnCorrectView() throws Exception {
         this.mockMvc
                 .perform(get("/roles/add"))
-                .andExpect(view().name("role-add"))
+                .andExpect(view().name("users/role-add"))
                 .andExpect(model().attributeExists("usernames"));
     }
 

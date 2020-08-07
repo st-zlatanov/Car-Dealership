@@ -14,7 +14,7 @@ public class PartControllerTest extends ControllerTestBase {
     public void partsAdd_shouldReturnCorrectView() throws Exception {
         this.mockMvc
                 .perform(get("/parts/add"))
-                .andExpect(view().name("part-add"))
+                .andExpect(view().name("parts/part-add"))
                 .andExpect(model().attributeExists("partAddBindingModel"));
     }
 
