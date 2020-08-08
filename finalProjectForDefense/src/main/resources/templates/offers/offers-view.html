@@ -17,10 +17,15 @@
         <div class="col-xl-4 col-lg-4 col-md-12 mx-auto mb-4">
             <img th:src="*{vehicle.imgUrl}" width="100%">
         </div>
-        <h3 th:text="|Sender: *{sender.username}|"></h3><h3 th:text="|Price: *{price}|"></h3>
-        <h3 th:text="|Vehicle: *{vehicle.make} *{vehicle.model}|"></h3><h3 th:text="|Id: *{vehicle.id}|"></h3>
-
+        <h3 th:text="|Sender: *{sender.username}|"></h3>
+        <h3 th:text="|Vehicle: *{vehicle.make} *{vehicle.model}|"></h3><h3 th:name="vehicleId" th:value="*{vehicle.id}" th:text="|Vehicle Id: *{vehicle.id}|"></h3>
+        <hr>
+        <hr>
         <h3 th:text="|Description: *{text}|"></h3>
+        <h3 th:text="|Price: *{price}|"></h3>
+        <hr>
+        <a th:href="@{/offers/accept/{id}(id = *{id})}">Accept</a>
+        <a th:href="@{/offers/reject/{id}(id = *{id})}">Reject</a>
 
 
     </div>

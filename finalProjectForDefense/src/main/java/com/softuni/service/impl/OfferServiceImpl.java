@@ -1,5 +1,6 @@
 package com.softuni.service.impl;
 
+import com.softuni.error.OfferNotFoundException;
 import com.softuni.model.entity.Offer;
 import com.softuni.model.entity.User;
 import com.softuni.model.entity.Vehicle;
@@ -59,5 +60,15 @@ public class OfferServiceImpl implements OfferService {
     @Override
     public void clearOffers() {
         this.offerRepository.deleteAll();
+    }
+
+    @Override
+    public void deleteOffer(String id) {
+        this.offerRepository.deleteById(id);
+    }
+
+    @Override
+    public Offer findOfferById(String id) {
+        return this.offerRepository.findById(id).orElseThrow(()-> new OfferNotFoundException("Offer not found!"));
     }
 }

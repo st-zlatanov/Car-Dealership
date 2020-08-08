@@ -81,5 +81,10 @@ public class VehicleServiceImpl implements VehicleService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public void deleteVehicleById(String id) {
+        this.vehicleRepository.deleteById(id);
+    }
+
 
 }

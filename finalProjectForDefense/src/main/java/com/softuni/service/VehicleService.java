@@ -12,6 +12,7 @@ public interface VehicleService {
     List<VehicleViewModel> findAllVehicles();
     VehicleViewModel findVehicleById(String id);
     List<VehicleViewModel> findAllVehiclesByCategory(CategoryName category);
+    void deleteVehicleById(String id);
 
 
 }

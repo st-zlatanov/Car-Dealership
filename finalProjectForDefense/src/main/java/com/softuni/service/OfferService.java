@@ -9,4 +9,6 @@ public interface OfferService {
     void addOffer(OfferServiceModel offerServiceModel);
     List<Offer> getAllOffersForUser(String id);
     void clearOffers();
+    void deleteOffer(String id);
+    Offer findOfferById(String id);
 }
