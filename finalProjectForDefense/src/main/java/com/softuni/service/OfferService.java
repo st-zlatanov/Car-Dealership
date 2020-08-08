@@ -8,4 +8,5 @@ import java.util.List;
 public interface OfferService {
     void addOffer(OfferServiceModel offerServiceModel);
     List<Offer> getAllOffersForUser(String id);
+    void clearOffers();
 }

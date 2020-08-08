@@ -55,4 +55,9 @@ public class OfferServiceImpl implements OfferService {
 
        return new ArrayList<>(this.offerRepository.findByReceiver(user));
     }
+
+    @Override
+    public void clearOffers() {
+        this.offerRepository.deleteAll();
+    }
 }
