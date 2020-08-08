@@ -9,6 +9,7 @@ public class PartViewModel {
     private BigDecimal price;
     private String description;
     private String condition;
+    private String imgUrl;
 
     public PartViewModel() {
     }
@@ -61,4 +62,11 @@ public class PartViewModel {
         this.condition = condition;
     }
 
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
 }

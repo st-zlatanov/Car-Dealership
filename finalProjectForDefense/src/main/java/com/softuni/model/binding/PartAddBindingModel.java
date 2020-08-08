@@ -3,6 +3,7 @@ package com.softuni.model.binding;
 import com.softuni.model.entity.Category;
 import com.softuni.model.entity.CategoryName;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
@@ -15,6 +16,7 @@ public class PartAddBindingModel {
     private BigDecimal price;
     private String description;
     private String condition;
+    private MultipartFile image;
 
     private CategoryName category;
 
@@ -74,5 +76,14 @@ public class PartAddBindingModel {
 
     public void setCategory(CategoryName category) {
         this.category = category;
+    }
+
+    @NotNull
+    public MultipartFile getImage() {
+        return image;
+    }
+
+    public void setImage(MultipartFile image) {
+        this.image = image;
     }
 }

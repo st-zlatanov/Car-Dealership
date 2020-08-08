@@ -3,6 +3,7 @@ package com.softuni.web;
 import com.softuni.model.binding.PartAddBindingModel;
 import com.softuni.model.service.PartServiceModel;
 import com.softuni.service.PartService;
+import com.softuni.service.VehicleService;
 import com.softuni.web.annotation.PageTitle;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,15 +15,18 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/parts")
 public class PartController {
     private final PartService partService;
+    private final VehicleService vehicleService;
     private final ModelMapper modelMapper;
 
-    public PartController(PartService partService, ModelMapper modelMapper) {
+    public PartController(PartService partService, VehicleService vehicleService, ModelMapper modelMapper) {
         this.partService = partService;
+        this.vehicleService = vehicleService;
         this.modelMapper = modelMapper;
     }
 
@@ -41,7 +45,7 @@ public class PartController {
 
     @PostMapping("/add")
     public String addConfirm(@Valid @ModelAttribute("partAddBindingModel") PartAddBindingModel partAddBindingModel,
-                             BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+                             BindingResult bindingResult, RedirectAttributes redirectAttributes) throws IOException {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("partAddBindingModel", partAddBindingModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.partAddBindingModel", bindingResult);
@@ -56,6 +60,8 @@ public class PartController {
     @GetMapping("/buy/{id}")
     public ModelAndView delete(ModelAndView modelAndView,@PathVariable("id")String id){
         this.partService.delete(id);
+        modelAndView.addObject("vehicles", this.vehicleService.findAllVehicles());
+        modelAndView.addObject("parts", this.partService.findAllParts());
         modelAndView.setViewName("home");
         return modelAndView;
     }

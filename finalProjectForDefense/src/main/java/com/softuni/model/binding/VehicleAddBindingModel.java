@@ -3,6 +3,7 @@ package com.softuni.model.binding;
 import com.softuni.model.entity.CategoryName;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 
 import javax.validation.constraints.DecimalMin;
@@ -18,7 +19,7 @@ public class VehicleAddBindingModel {
     private LocalDate yearOfManufacturing;
     private String description;
     private CategoryName category;
-    private String imgUrl;
+    private MultipartFile image;
 
 
     public VehicleAddBindingModel() {
@@ -81,12 +82,12 @@ public class VehicleAddBindingModel {
         this.category = category;
     }
 
-    @Length(min = 1, message = "Enter valid image url!")
-    public String getImgUrl() {
-        return imgUrl;
+    @NotNull
+    public MultipartFile getImage() {
+        return image;
     }
 
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
+    public void setImage(MultipartFile image) {
+        this.image = image;
     }
 }

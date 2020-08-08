@@ -1,6 +1,7 @@
 package com.softuni.model.service;
 
 import com.softuni.model.entity.User;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -13,7 +14,7 @@ public class VehicleServiceModel extends BaseServiceModel {
     private BigDecimal price;
     private LocalDate yearOfManufacturing;
     private String description;
-    private String imgUrl;
+    private MultipartFile image;
     private UserServiceModel owner;
 
     public VehicleServiceModel() {
@@ -67,13 +68,14 @@ public class VehicleServiceModel extends BaseServiceModel {
         this.description = description;
     }
 
-    public String getImgUrl() {
-        return imgUrl;
+    public MultipartFile getImage() {
+        return image;
     }
 
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
+    public void setImage(MultipartFile image) {
+        this.image = image;
     }
+
 
     public UserServiceModel getOwner() {
         return owner;

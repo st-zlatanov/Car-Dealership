@@ -15,6 +15,7 @@ public class Part extends BaseEntity{
     private String description;
     private String condition;
     private Category category;
+    private String imgUrl;
 
 
     public Part() {
@@ -73,5 +74,14 @@ public class Part extends BaseEntity{
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    @Column(name="img_url", nullable = false)
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 }

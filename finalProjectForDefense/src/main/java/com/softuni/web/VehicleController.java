@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/vehicles")
@@ -49,7 +50,7 @@ public class VehicleController {
 
     @PostMapping("/add")
     public String addConfirm(@Valid @ModelAttribute("vehicleAddBindingModel") VehicleAddBindingModel vehicleAddBindingModel,
-                             BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+                             BindingResult bindingResult, RedirectAttributes redirectAttributes) throws IOException {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("vehicleAddBindingModel", vehicleAddBindingModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.vehicleAddBindingModel", bindingResult);
@@ -58,6 +59,7 @@ public class VehicleController {
 
         this.vehicleService.addVehicle(this.modelMapper
                 .map(vehicleAddBindingModel, VehicleServiceModel.class));
+
         return "redirect:/";
     }
 

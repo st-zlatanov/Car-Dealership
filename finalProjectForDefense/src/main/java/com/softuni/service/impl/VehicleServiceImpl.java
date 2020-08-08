@@ -8,13 +8,11 @@ import com.softuni.model.entity.Vehicle;
 import com.softuni.model.service.VehicleServiceModel;
 import com.softuni.model.view.VehicleViewModel;
 import com.softuni.repository.VehicleRepository;
-import com.softuni.service.AuthenticatedUserService;
-import com.softuni.service.CategoryService;
-import com.softuni.service.UserService;
-import com.softuni.service.VehicleService;
+import com.softuni.service.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,17 +23,19 @@ public class VehicleServiceImpl implements VehicleService {
     private final CategoryService categoryService;
     private final AuthenticatedUserService authenticatedUserService;
     private final UserService userService;
+    private final CloudinaryService cloudinaryService;
 
-    public VehicleServiceImpl(VehicleRepository vehicleRepository, ModelMapper modelMapper, CategoryService categoryService, AuthenticatedUserService authenticatedUserService, UserService userService) {
+    public VehicleServiceImpl(VehicleRepository vehicleRepository, ModelMapper modelMapper, CategoryService categoryService, AuthenticatedUserService authenticatedUserService, UserService userService, CloudinaryService cloudinaryService) {
         this.vehicleRepository = vehicleRepository;
         this.modelMapper = modelMapper;
         this.categoryService = categoryService;
         this.authenticatedUserService = authenticatedUserService;
         this.userService = userService;
+        this.cloudinaryService = cloudinaryService;
     }
 
     @Override
-    public void addVehicle(VehicleServiceModel vehicleServiceModel) {
+    public void addVehicle(VehicleServiceModel vehicleServiceModel) throws IOException {
         Vehicle vehicle = this.modelMapper.map(vehicleServiceModel, Vehicle.class);
 
         String username = authenticatedUserService.getUsername();
@@ -43,6 +43,7 @@ public class VehicleServiceImpl implements VehicleService {
 
         vehicle.setCategory(this.categoryService.find(vehicleServiceModel.getCategory().getName()));
         vehicle.setOwner(user);
+        vehicle.setImgUrl(cloudinaryService.uploadImage(vehicleServiceModel.getImage()));
         this.vehicleRepository.saveAndFlush(vehicle);
     }
 

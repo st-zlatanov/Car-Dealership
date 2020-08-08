@@ -1,6 +1,8 @@
 package com.softuni.model.service;
 
 
+import org.springframework.web.multipart.MultipartFile;
+
 import java.math.BigDecimal;
 
 public class PartServiceModel extends BaseServiceModel {
@@ -9,6 +11,7 @@ public class PartServiceModel extends BaseServiceModel {
     private BigDecimal price;
     private String description;
     private String condition;
+    private MultipartFile image;
 
     private CategoryServiceModel category;
 
@@ -61,5 +64,13 @@ public class PartServiceModel extends BaseServiceModel {
 
     public void setCategory(CategoryServiceModel category) {
         this.category = category;
+    }
+
+    public MultipartFile getImage() {
+        return image;
+    }
+
+    public void setImage(MultipartFile image) {
+        this.image = image;
     }
 }

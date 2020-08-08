@@ -114,7 +114,8 @@ public class UserController {
     @PreAuthorize("hasAuthority('ADMIN')")
     public ModelAndView delete(ModelAndView modelAndView, @PathVariable("id")String id){
         this.userService.delete(id);
-        modelAndView.setViewName("home");
+        modelAndView.addObject("users", this.userService.findAllUsers());
+        modelAndView.setViewName("users/view-users");
         return modelAndView;
     }
 
