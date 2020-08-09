@@ -74,7 +74,6 @@ public class VehicleController {
         httpSession.setAttribute("vehicleId",vehicle.getId());
         modelAndView.setViewName("vehicles/vehicle-details");
 
-
         return modelAndView;
     }
 

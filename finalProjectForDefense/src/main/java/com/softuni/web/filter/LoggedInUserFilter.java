@@ -1,15 +1,14 @@
 package com.softuni.web.filter;
 
 import com.softuni.service.AuthenticatedUserService;
-import org.springframework.security.core.GrantedAuthority;
+
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Collection;
-import java.util.List;
+
 
 @Component
 public class LoggedInUserFilter implements Filter {

@@ -38,26 +38,26 @@ public class UserController {
         }
      return "users/login";
     }
-    @PostMapping("/login")
-    public String loginConfirm(@Valid
-                                   @ModelAttribute("userLoginBindingModel") UserLoginBindingModel userLoginBindingModel,
-                               BindingResult bindingResult, RedirectAttributes redirectAttributes, HttpSession httpSession){
-    if(bindingResult.hasErrors()){
+//    @PostMapping("/login")
+//    public String loginConfirm(@Valid
+//                                   @ModelAttribute("userLoginBindingModel") UserLoginBindingModel userLoginBindingModel,
+//                               BindingResult bindingResult, RedirectAttributes redirectAttributes, HttpSession httpSession){
+//    if(bindingResult.hasErrors()){
+//
+//        redirectAttributes.addFlashAttribute("userLoginBindingModel", userLoginBindingModel);
+//        redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userLoginBindingModel", bindingResult);
+//        return "redirect:login";
+//    }
+//    UserServiceModel user = this.userService.findByUsername(userLoginBindingModel.getUsername());
+//    if(user == null || !user.getPassword().equals(userLoginBindingModel.getPassword())){
+//        redirectAttributes.addFlashAttribute("userLoginBindingModel", userLoginBindingModel);
+//        redirectAttributes.addFlashAttribute("notFound", true );
+//        return "redirect:login";
+//    }
 
-        redirectAttributes.addFlashAttribute("userLoginBindingModel", userLoginBindingModel);
-        redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userLoginBindingModel", bindingResult);
-        return "redirect:login";
-    }
-    UserServiceModel user = this.userService.findByUsername(userLoginBindingModel.getUsername());
-    if(user == null || !user.getPassword().equals(userLoginBindingModel.getPassword())){
-        redirectAttributes.addFlashAttribute("userLoginBindingModel", userLoginBindingModel);
-        redirectAttributes.addFlashAttribute("notFound", true );
-        return "redirect:login";
-    }
-
-    httpSession.setAttribute("user", user);
-    return "redirect:/";
-    }
+//    httpSession.setAttribute("user", user);
+//    return "redirect:/";
+//    }
 
     @GetMapping("/register")
     @PageTitle("Register")
