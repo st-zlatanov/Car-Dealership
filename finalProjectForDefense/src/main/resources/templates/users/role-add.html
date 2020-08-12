@@ -5,11 +5,10 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-lg bg-nav rounded">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <th:block th:include="~{/fragments/nav}"></th:block>
     </nav>
 </header>
-<body>
 <div class="container">
     <div class="row tm-mt-big justify-content-center">
         <div class="col-xl-8 col-lg-10 col-md-12 col-sm-12">
@@ -59,12 +58,12 @@
             </div>
         </div>
     </div>
+
     <footer class="row">
         <th:block th:include="~{fragments/footer}"></th:block>
-</div>
 </footer>
 </div>
-
+<th:block th:include="~{/fragments/script-loaders}"></th:block>
 </body>
 
 </html>

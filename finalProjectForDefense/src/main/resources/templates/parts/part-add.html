@@ -5,12 +5,12 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-lg bg-nav rounded">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <th:block th:include="~{/fragments/nav}"></th:block>
     </nav>
 </header>
 <main>
-    <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Add vehicle</span></h1>
+    <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Add part</span></h1>
     <hr class="hr-3 w-25 bg-white"/>
     <form class="mx-auto w-25 bg-blur rounded" th:object="${partAddBindingModel}" method="POST" th:action="@{/parts/add}" enctype="multipart/form-data">
         <div class="form-group">
@@ -82,5 +82,6 @@
 <footer class="footer bg-transparent  py-2">
     <th:block th:include="~{/fragments/footer}"></th:block>
 </footer>
+<th:block th:include="~{/fragments/script-loaders}"></th:block>
 </body>
 </html>

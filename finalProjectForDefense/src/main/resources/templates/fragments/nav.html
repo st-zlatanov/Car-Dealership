@@ -1,41 +1,67 @@
 <th:block xmlns:th="http://www.thymeleaf.org"
           xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
           th:if="${session.username==null}">
-    <a class="nav-link text-white active h5" href="/">Car Dealership App</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="/">Car Dealership App</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
+            aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
-        <ul class="navbar-nav row">
-            <li class="nav-item col-md-4">
-                <a class="nav-link text-white active h5" href="/users/login">Login</a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item ">
+                <a class="nav-link" href="/users/login">Login</a>
             </li>
-            <li class="nav-item col-md-4">
-                <a class="nav-link text-white active h5" href="/users/register">Register</a>
+            <li class="nav-item">
+                <a class="nav-link" href="/users/register">Register</a>
             </li>
         </ul>
+
     </div>
 </th:block>
-<th:block xmlns:th="http://www.thymeleaf.org"
-    th:unless="${session.username==null}">
-    <a class="nav-link text-white active h5" href="/">Car Dealership App</a>
-    <a class="nav-link text-white active h5" href="/vehicles/add">Add Vehicle</a>
-    <a class="nav-link text-white active h5" href="/parts/add">Add Part</a>
-    <div sec:authorize="hasAuthority('ADMIN')">
-    <a class="nav-link text-white active h5" href="/roles/add">Manage Roles</a>
-    <a class="nav-link text-white active h5" href="/users/view">View All Users</a>
-<!--        da izlizat vsichki i na dropdown menu da ima all admins users i da se filtervat-->
-    </div>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
-        <ul class="navbar-nav row">
-                <a class="nav-link text-white active h5" href="/users/profile" th:text="|Welcome, ${session.username}|"></a>
-                <a class="nav-link text-white active h5" href="/offers/view">My Offers</a>
-                <a class="nav-link text-white active h5" href="/logout">Logout</a>
+
+<th:block xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+          th:unless="${session.username==null}">
+
+<a class="navbar-brand" href="/">Car Dealership App</a>
+
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+</button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/vehicles/add">Add Vehicle</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/parts/add">Add Part</a>
+            </li>
+
+            <div sec:authorize="hasAuthority('ADMIN')">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">Admin</a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/roles/add">Manage Roles</a>
+                    <a class="dropdown-item" href="/users/view">View All Users</a>
+                </div>
+            </li>
+            </div>
+
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item ">
+                <a class="nav-link" href="/users/profile"
+                   th:text="|Welcome, ${session.username}|"></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/offers/view">My Offers</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+            </li>
         </ul>
     </div>
 </th:block>

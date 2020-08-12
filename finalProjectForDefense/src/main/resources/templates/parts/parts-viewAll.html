@@ -5,7 +5,7 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-lg bg-nav rounded">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <th:block th:include="~{/fragments/nav}"></th:block>
     </nav>
 </header>
@@ -15,13 +15,14 @@
     </div>
     <div th:unless="${parts.size()==0}" class="container-fluid">
         <div class="offers row mx-auto d-flex flex-row justify-content-center">
-            <div th:each="p : ${parts}" th:object="${p}" class="offer card col-sm-3 col-md-3  col-lg-2 m-1 p-0">
+            <div th:each="p : ${parts}" th:object="${p}" class="card col-sm-3 col-md-3  col-lg-2 m-1 p-0">
                 <div class="card-img-top-wrapper">
-                    <img class="card-img-top" th:src="*{imgUrl}" alt="part-image"></a>                </div>
+                    <img class="card-img-top" th:src="*{imgUrl}" alt="part-image"></a>
+                </div>
                 <div class="card-body pb-1">
                     <h5 class="card-title text-center" th:text="|*{name} for *{carModel}|"></h5>
                 </div>
-                <ul class="offer-details list-group list-group-flush">
+                <ul class="list-group list-group-flush">
                     <li class="list-group-item">
                         <div class="card-text text-center"><span th:text="|*{price} BGN|"></span></div>
                     </li>
@@ -35,6 +36,7 @@
 <footer class="footer bg-transparent  py-2">
     <th:block th:include="~{/fragments/footer}"></th:block>
 </footer>
+<th:block th:include="~{/fragments/script-loaders}"></th:block>
 </body>
 </html>
 
