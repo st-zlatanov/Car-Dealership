@@ -20,7 +20,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                 .antMatchers("/css/**", "/img/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/users/login")
+                .formLogin().loginPage("/users/login").failureUrl("/users/login?error")
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/",true)
