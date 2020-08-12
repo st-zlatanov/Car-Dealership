@@ -2,7 +2,9 @@ package com.softuni.service;
 
 import com.softuni.base.TestBase;
 import com.softuni.error.VehicleNotFoundException;
+import com.softuni.model.entity.CategoryName;
 import com.softuni.model.entity.Vehicle;
+import com.softuni.model.service.CategoryServiceModel;
 import com.softuni.model.service.VehicleServiceModel;
 
 import com.softuni.model.view.VehicleViewModel;
@@ -16,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,6 +65,10 @@ class VehicleServiceImplTest extends TestBase {
         Vehicle vehicle = new Vehicle();
         vehicle.setMake("audi");
         vehicle.setModel("a3");
+        vehicle.setImgUrl("http://res.cloudinary.com/st-zlatanov/image/upload/v1597234838/wssglfo8qmvlplyrlohk.jpg");
+        vehicle.setPrice(BigDecimal.ONE);
+        vehicle.setDescription("asdfghhh");
+
 
         List<Vehicle> vehicles = new ArrayList<>(List.of(vehicle));
 
@@ -76,6 +83,15 @@ class VehicleServiceImplTest extends TestBase {
     @Test
     public void createVehicle_WhenUserIsNull_shouldThrowEx() {
         VehicleServiceModel model = new VehicleServiceModel();
+        CategoryServiceModel categoryServiceModel = new CategoryServiceModel();
+        categoryServiceModel.setName(CategoryName.CAR);
+        categoryServiceModel.setDescription("description for car");
+        model.setMake("audi");
+        model.setModel("a4");
+        model.setPrice(BigDecimal.ONE);
+        model.setDescription("asdfggh");
+        model.setCategory(categoryServiceModel);
+
         assertThrows(Exception.class,
                 () -> vehicleService.addVehicle(model));
     }

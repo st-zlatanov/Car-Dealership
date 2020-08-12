@@ -4,6 +4,9 @@ import com.softuni.base.TestBase;
 import com.softuni.model.entity.Offer;
 import com.softuni.model.entity.Part;
 import com.softuni.model.entity.User;
+import com.softuni.model.service.CategoryServiceModel;
+import com.softuni.model.service.PartServiceModel;
+import com.softuni.model.service.VehicleServiceModel;
 import com.softuni.model.view.PartViewModel;
 import com.softuni.repository.PartRepository;
 
@@ -14,6 +17,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import javax.validation.constraints.DecimalMin;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -33,6 +38,10 @@ class PartServiceImplTest extends TestBase{
         Part part = new Part();
        part.setName("engine");
        part.setCarModel("audi a3");
+       part.setImgUrl("http://res.cloudinary.com/st-zlatanov/image/upload/v1596969986/flcsmgijm7fzxgwficqn.jpg");
+       part.setCondition("new");
+       part.setDescription("asdfgg");
+       part.setPrice(BigDecimal.ONE);
 
         List<Part> parts = new ArrayList<>(List.of(part));
 
@@ -41,6 +50,19 @@ class PartServiceImplTest extends TestBase{
         List<PartViewModel> returnedParts = partService.findAllParts();
 
         assertEquals(parts.size(), returnedParts.size());
+    }
+    @Test
+    public void createPart_WhenCategoryIsNull_shouldThrowEx() {
+        PartServiceModel model = new PartServiceModel();
+        model.setCarModel("Audi a3");
+        model.setCondition("used");
+        model.setName("engine");
+        model.setPrice(BigDecimal.ONE);
+        model.setDescription("asdfggh");
+        model.setCategory(null);
+
+        assertThrows(Exception.class,
+                () -> partService.addPart(model));
     }
 
 //    @Test()

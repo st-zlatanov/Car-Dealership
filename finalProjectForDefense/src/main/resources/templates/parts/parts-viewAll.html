@@ -14,7 +14,7 @@
         <h2 class="text-center mt-2"><span class="badge badge-pill badge-dark">No parts are available at the moment!</span></h2>
     </div>
     <div th:unless="${parts.size()==0}" class="container-fluid">
-        <div class="offers row mx-auto d-flex flex-row justify-content-center">
+        <div class=" row mx-auto d-flex flex-row justify-content-center">
             <div th:each="p : ${parts}" th:object="${p}" class="card col-sm-3 col-md-3  col-lg-2 m-1 p-0">
                 <div class="card-img-top-wrapper">
                     <img class="card-img-top" th:src="*{imgUrl}" alt="part-image"></a>

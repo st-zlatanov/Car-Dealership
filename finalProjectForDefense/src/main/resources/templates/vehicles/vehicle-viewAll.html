@@ -19,12 +19,14 @@
     <hr class="hr-3"/>
     <hr class="hr-3"/>
     <hr class="hr-3"/>
-    <div class="container-fluid">
-        <div class="row mx-auto d-flex flex-row justify-content-center">
-            <div th:each="v : ${vehicles}" th:object="${v}" class="card col-sm-6 col-md-3  col-lg-2 m-1 p-0">
-
+    <div th:if="${vehicles.size()==0}">
+        <h2 class="text-center mt-2"><span class="badge badge-pill badge-dark">No vehicles are available at the moment!</span></h2>
+    </div>
+    <div th:unless="${vehicles.size()==0}" class="container-fluid">
+        <div class=" row mx-auto d-flex flex-row justify-content-center">
+            <div th:each="v : ${vehicles}" th:object="${v}" class="card col-sm-3 col-md-3  col-lg-2 m-1 p-0">
                 <div th:if="${v.categoryName.name()} == 'CAR'">
-                <h1><span class="card-title text-center" th:text="*{categoryName.name()}"></span></h1>
+                <h1 class="card-title text-center" th:text="*{categoryName.name()}"></h1>
                 <div class="card-img-top-wrapper">
                     <a th:href="@{details/(id = *{id})}">
                         <img class="card-img-top" th:src="*{imgUrl}" alt="image"></a>

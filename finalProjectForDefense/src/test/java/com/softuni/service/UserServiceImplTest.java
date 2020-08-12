@@ -131,6 +131,8 @@ class UserServiceImplTest extends TestBase {
 
         User user = new User();
         user.setUsername("name");
+        user.setPassword("1234");
+        user.setEmail("ast@abv.bg");
 
         usersList.add(user);
         assertThrows(Exception.class,

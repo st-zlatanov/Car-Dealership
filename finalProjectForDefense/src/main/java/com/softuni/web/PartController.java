@@ -67,7 +67,7 @@ public class PartController {
     }
 
     @GetMapping("/viewAll")
-    @PageTitle("All Cars")
+    @PageTitle("All Parts")
     @PreAuthorize("isAuthenticated()")
     public ModelAndView viewAll(ModelAndView modelAndView) {
         modelAndView.addObject("parts", this.partService.findAllParts());

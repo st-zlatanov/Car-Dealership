@@ -17,5 +17,13 @@ public class PartControllerTest extends ControllerTestBase {
                 .andExpect(view().name("parts/part-add"))
                 .andExpect(model().attributeExists("partAddBindingModel"));
     }
+    @Test
+    @WithMockUser(username = "Stiliyan")
+    public void partsViewAll_shouldReturnCorrectView() throws Exception {
+        this.mockMvc
+                .perform(get("/parts/viewAll"))
+                .andExpect(view().name("parts/parts-viewAll"))
+                .andExpect(model().attributeExists("parts"));
+    }
 
 }
