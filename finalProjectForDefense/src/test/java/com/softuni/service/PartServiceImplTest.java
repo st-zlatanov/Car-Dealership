@@ -1,6 +1,9 @@
 package com.softuni.service;
 
 import com.softuni.base.TestBase;
+import com.softuni.model.binding.PartAddBindingModel;
+import com.softuni.model.binding.UserRegisterBindingModel;
+import com.softuni.model.entity.CategoryName;
 import com.softuni.model.entity.Offer;
 import com.softuni.model.entity.Part;
 import com.softuni.model.entity.User;
@@ -65,16 +68,21 @@ class PartServiceImplTest extends TestBase{
                 () -> partService.addPart(model));
     }
 
-//    @Test()
-//    public void delete_whenExist_shouldDelete() {
-//        String id = "1";
-//        Part part = new Part();
-//        part.setId(id);
-//        Mockito.when(this.partRepository.findById(id))
-//                .thenReturn(Optional.of(part))
-//                .thenThrow(Exception.class);
-//        this.partService.delete(id);
-//        assertThrows(Exception.class,
-//                () -> this.partService.delete(id));
-//    }
+    @Test
+    void settingFieldsOfAddBindingModel_shouldWorkCorrectly(){
+        PartAddBindingModel model = new PartAddBindingModel();
+        model.setCarModel("audi a3");
+        model.setCondition("new");
+        model.setDescription("asdfgh");
+        model.setName("engine");
+        model.setPrice(BigDecimal.ONE);
+        model.setCategory(CategoryName.CAR);
+
+        assertEquals("audi a3", model.getCarModel());
+        assertEquals("new", model.getCondition());
+        assertEquals("asdfgh", model.getDescription());
+        assertEquals("engine", model.getName());
+        assertEquals(BigDecimal.ONE, model.getPrice());
+        assertEquals(CategoryName.CAR, model.getCategory());
+    }
 }

@@ -2,6 +2,8 @@ package com.softuni.service;
 
 import com.softuni.base.TestBase;
 import com.softuni.error.VehicleNotFoundException;
+import com.softuni.model.binding.UserRegisterBindingModel;
+import com.softuni.model.binding.VehicleAddBindingModel;
 import com.softuni.model.entity.CategoryName;
 import com.softuni.model.entity.Vehicle;
 import com.softuni.model.service.CategoryServiceModel;
@@ -106,5 +108,20 @@ class VehicleServiceImplTest extends TestBase {
         VehicleServiceModel model = null;
         assertThrows(Exception.class,
                 () -> vehicleService.addVehicle(model));
+    }
+
+    @Test
+    void settingFieldsOfAddBindingModel_shouldWorkCorrectly(){
+        VehicleAddBindingModel model = new VehicleAddBindingModel();
+        model.setMake("audi");
+        model.setModel("a3");
+        model.setPrice(BigDecimal.ONE);
+        model.setDescription("asdfgh");
+        model.setCategory(CategoryName.CAR);
+        assertEquals("audi", model.getMake());
+        assertEquals("a3", model.getModel());
+        assertEquals(BigDecimal.ONE, model.getPrice());
+        assertEquals("asdfgh", model.getDescription());
+        assertEquals(CategoryName.CAR, model.getCategory());
     }
 }

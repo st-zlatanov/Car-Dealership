@@ -1,6 +1,8 @@
 package com.softuni.service;
 
 import com.softuni.base.TestBase;
+import com.softuni.model.binding.OfferAddBindingModel;
+import com.softuni.model.binding.UserRegisterBindingModel;
 import com.softuni.model.entity.Offer;
 import com.softuni.model.entity.User;
 import com.softuni.model.service.OfferServiceModel;
@@ -15,6 +17,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,5 +68,36 @@ class OfferServiceImplTest extends TestBase {
         offersList.add(offer);
         assertThrows(Exception.class,
                 () -> offerService.findOfferById(""));
+    }
+
+    @Test
+    void settingFieldsOfAddBindingModel_shouldWorkCorrectly(){
+        OfferAddBindingModel model = new OfferAddBindingModel();
+        model.setReceiver("stilkata");
+        model.setSender("stilkata123");
+        model.setText("stilkataasdfg");
+        model.setVehicleId("12345");
+        model.setPrice(BigDecimal.ONE);
+
+        assertEquals("stilkata", model.getReceiver());
+        assertEquals("stilkata123", model.getSender());
+        assertEquals("stilkataasdfg", model.getText());
+        assertEquals("12345", model.getVehicleId());
+        assertEquals(BigDecimal.ONE, model.getPrice());
+    }
+    @Test
+    void settingFieldsOfServiceModel_shouldWorkCorrectly(){
+        OfferServiceModel model = new OfferServiceModel();
+        model.setReceiver("stilkata");
+        model.setSender("stilkata123");
+        model.setText("stilkataasdfg");
+        model.setVehicleId("12345");
+        model.setPrice(BigDecimal.ONE);
+
+        assertEquals("stilkata", model.getReceiver());
+        assertEquals("stilkata123", model.getSender());
+        assertEquals("stilkataasdfg", model.getText());
+        assertEquals("12345", model.getVehicleId());
+        assertEquals(BigDecimal.ONE, model.getPrice());
     }
 }

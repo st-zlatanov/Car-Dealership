@@ -1,12 +1,17 @@
 package com.softuni.controller;
 
 import com.softuni.base.ControllerTestBase;
+import com.softuni.model.binding.UserRegisterBindingModel;
+import com.softuni.model.binding.VehicleAddBindingModel;
+import com.softuni.model.entity.CategoryName;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.test.context.support.WithMockUser;
 
+import java.math.BigDecimal;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 public class VehicleControllerTest extends ControllerTestBase {
 

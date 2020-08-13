@@ -1,6 +1,9 @@
 package com.softuni.service;
 
 import com.softuni.base.TestBase;
+import com.softuni.error.UserNotFoundException;
+import com.softuni.model.binding.UserLoginBindingModel;
+import com.softuni.model.binding.UserRegisterBindingModel;
 import com.softuni.model.entity.User;
 import com.softuni.model.service.UserServiceModel;
 import com.softuni.repository.UserRepository;
@@ -18,6 +21,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -107,7 +111,7 @@ class UserServiceImplTest extends TestBase {
     @Test
     public void loadByUsername_whenNoUser_shouldThrowEx() {
         usersList.clear();
-        assertThrows(Exception.class,
+        assertThrows(UsernameNotFoundException.class,
                 () -> userService.loadUserByUsername("name"));
     }
 
@@ -135,8 +139,32 @@ class UserServiceImplTest extends TestBase {
         user.setEmail("ast@abv.bg");
 
         usersList.add(user);
-        assertThrows(Exception.class,
+        assertThrows(UserNotFoundException .class,
                 () -> userService.findByUsername(""));
+    }
+
+    @Test
+    void settingFieldsOfRegisterBindingModel_shouldWorkCorrectly(){
+        UserRegisterBindingModel model = new UserRegisterBindingModel();
+        model.setEmail("sti123@abv.bg");
+        model.setUsername("stilkata");
+        model.setPassword("stilkata");
+        model.setConfirmPassword("stilkata");
+
+        assertEquals("stilkata", model.getUsername());
+        assertEquals("stilkata", model.getPassword());
+        assertEquals("stilkata", model.getConfirmPassword());
+        assertEquals("sti123@abv.bg", model.getEmail());
+    }
+    @Test
+    void settingFieldsOfLoginBindingModel_shouldWorkCorrectly(){
+        UserLoginBindingModel model = new UserLoginBindingModel();
+        model.setUsername("stilkata");
+        model.setPassword("stilkata");
+
+        assertEquals("stilkata", model.getUsername());
+        assertEquals("stilkata", model.getPassword());
+
     }
 
 

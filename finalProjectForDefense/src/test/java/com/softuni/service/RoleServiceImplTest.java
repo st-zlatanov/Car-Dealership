@@ -1,12 +1,15 @@
 package com.softuni.service;
 
 import com.softuni.base.TestBase;
+import com.softuni.model.binding.RoleAddBindingModel;
+import com.softuni.model.binding.UserRegisterBindingModel;
 import com.softuni.model.entity.Role;
 import com.softuni.model.service.RoleServiceModel;
 import com.softuni.repository.RoleRepository;
 import com.softuni.service.impl.RoleServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -59,5 +62,15 @@ class RoleServiceImplTest extends TestBase {
         RoleServiceModel result = roleService.findByAuthority(authority);
 
         Assert.assertEquals(role.getAuthority(), result.getAuthority());
+    }
+    @Test
+    void settingFieldsOfAddBindingModel_shouldWorkCorrectly(){
+        RoleAddBindingModel model = new RoleAddBindingModel();
+        model.setRole("ADMIN");
+        model.setUsername("stilkata");
+
+        Assertions.assertEquals("stilkata", model.getUsername());
+        Assertions.assertEquals("ADMIN", model.getRole());
+
     }
 }
