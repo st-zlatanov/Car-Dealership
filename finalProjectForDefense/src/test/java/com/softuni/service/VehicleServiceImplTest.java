@@ -4,6 +4,7 @@ import com.softuni.base.TestBase;
 import com.softuni.error.VehicleNotFoundException;
 import com.softuni.model.binding.UserRegisterBindingModel;
 import com.softuni.model.binding.VehicleAddBindingModel;
+import com.softuni.model.entity.Category;
 import com.softuni.model.entity.CategoryName;
 import com.softuni.model.entity.Vehicle;
 import com.softuni.model.service.CategoryServiceModel;
@@ -70,6 +71,7 @@ class VehicleServiceImplTest extends TestBase {
         vehicle.setImgUrl("http://res.cloudinary.com/st-zlatanov/image/upload/v1597234838/wssglfo8qmvlplyrlohk.jpg");
         vehicle.setPrice(BigDecimal.ONE);
         vehicle.setDescription("asdfghhh");
+        vehicle.setCategory(new Category(CategoryName.CAR, "asdfggh"));
 
 
         List<Vehicle> vehicles = new ArrayList<>(List.of(vehicle));

@@ -1,6 +1,5 @@
 package com.softuni.web;
 
-import com.softuni.error.ChangeYourOwnRoleException;
 import com.softuni.model.binding.RoleAddBindingModel;
 import com.softuni.service.RoleService;
 import com.softuni.service.UserService;
@@ -43,10 +42,8 @@ public class RolesController {
 
     @PostMapping("/add")
     public String addConfirm(@ModelAttribute("roleAddBindingModel")
-                                     RoleAddBindingModel roleAddBindingModel, Principal principal) {
-        if (principal.getName().equals(roleAddBindingModel.getUsername())) {
-            throw new ChangeYourOwnRoleException("You can't change your own role!");
-        }
+                                     RoleAddBindingModel roleAddBindingModel) {
+
         this.userService.addRoleToUser(roleAddBindingModel.getUsername(), roleAddBindingModel.getRole());
 
         return "redirect:/";
