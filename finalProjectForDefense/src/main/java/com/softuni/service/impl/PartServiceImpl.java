@@ -1,5 +1,7 @@
 package com.softuni.service.impl;
 
+import com.softuni.error.PartNotFoundException;
+import com.softuni.error.VehicleNotFoundException;
 import com.softuni.model.entity.Part;
 import com.softuni.model.service.PartServiceModel;
 import com.softuni.model.view.PartViewModel;
@@ -49,6 +51,10 @@ public class PartServiceImpl implements PartService {
 
     @Override
     public void delete(String id) {
-        this.partRepository.deleteById(id);
+        try {
+            this.partRepository.deleteById(id);
+        }catch (Exception ex){
+            throw new PartNotFoundException();
+        }
     }
 }
